@@ -30,7 +30,9 @@ ssh-copy-id -i ~/.ssh/id_rsa username@login.mydomain.com -p 22022
 ```
 
 :heavy_exclamation_mark: Replace the login node URL (```login.mydomain.com```) with the URL provided by the trainer.
+
 :heavy_exclamation_mark: Replace the ```username``` with the user provided by the trainer.
+
 :heavy_exclamation_mark: The default SSH key is located in the following path ```~/.ssh/id_rsa```. If you have created a different one, replace the path to the SSH key.
 
 ### Connect to the login node
