@@ -8,14 +8,13 @@ Cluster account.
 Laptop with SSH client.
 
 # ToDo
-Connect to the login node
+Open an interactive session from the login node:
 
 ```
-ssh username@login.mydomain.com -p 22022 -X
+interactive
 ```
 
 ## Slurm Workload Manager
-
 Slurm is the software responsible for managing and allocating the cluster resources when you submit a job.
 You need to define the job requirements in order to submit a job. The most common used parameters are:
 
@@ -92,11 +91,14 @@ Slurm gives each job a priority, and works to free up appropriate resources for 
 - $SLURM_ARRAY_TASK_ID (job array index value)
 
 ### Temporary folders
-Temporary folders are created for each job. 
+The following temporary folders are created for each job. Once the job is completed, the content of those folders is removed.
+Those temporary folders are meant to be used to perform high io operations. In order to take advantage of these high performance file systems, you will need to stage in and out the required files.
 
-- ```$TMP_DIR```
-- ```$SHM_DIR```
-- ```$SCRATCH_DIR```
+| File System  | Environment Variable | Real Path                        |
+| ------------ | -------------------- | -------------------------------- |
+| local disk   | ```$TMP_DIR```       | /tmp/jobs/$USER/$SLURM_JOBID     |
+| local memory | ```$SHM_DIR```       | /dev/shm/jobs/$USER/$SLURM_JOBID |
+| cluster FS   | ```$SCRATCH_DIR```   | /scratch/jobs/$USER/$SLURM_JOBID |
 
 ### Examples of submitting jobs
 
@@ -104,12 +106,11 @@ Let's submit the first batch job with Slurm. We will do it using the `sbatch` co
 
 ```
 sbatch -t 00:01:00 --wrap "sleep 30; echo hello world"
-
 ```
 
-The options `-t` stands for *time* and sets a limit on the total run time of the job allocation. Note that each partition on which the jobs are run has its own time limit. If the set time limit exceeds the limit for the partition, the job will become "PENDING" (for more information on job statuses, see below).
-`--wrap` option means that the following string (in "") will be turned by Slurm in a simple shell script. 
-
+* The `-t` option stands for *time* and sets a limit on the total run time of the job allocation.
+* If no time limit is defined, the maximum time limit available in the longest partition will be applied. 
+* The `--wrap` option means that the following string (in "") will be turned by Slurm in a simple shell script. 
 
 ### Monitoring your work on the cluster
 The jobs are scheduled in terms of your relative job priority. Slurm can estimate when the job is going to be scheduled (START_TIME). 
@@ -246,6 +247,42 @@ srun binary_cuda_mpi
 #### Real examples
 There is a quite extensive list of real applications submit scripts available in the [HPCNow! github](https://github.com/HPCNow/SubmitScripts/blob/master/Slurm/).
 Please, feel free to clone and pull new request to include more examples.
+
+### Submitting and managing jobs
+In this section we are going to submit few jobs using an example code. We found [heart_demo](https://github.com/CardiacDemo/Cardiac_demo.git) really usefull code for teaching the very basics of HPC and also for teaching performance analysis (hands-on 08 to 10). 
+
+The "heart_demo" project is developed by Alexey Malkhanov (Intel) and it implements minimal functionality for a real-time 3D cardiac electrophysiology simulation. More information about this project available [here](https://github.com/CardiacDemo/Cardiac_demo.git).
+
+In order to build the code you will need to load the following environment:
+
+```
+ml intel/2017a
+```
+
+Move to the folder ```examples/Cardiac_demo``` and build the example code with:
+
+```
+cd $HOME/snow-labs/user-training/examples/Cardiac_demo
+mkdir build
+cd build
+mpiicpc ../heart_demo.cpp ../luo_rudy_1991.cpp ../rcm.cpp ../mesh.cpp -g \
+        -o heart_demo -O3 -std=c++11 -D_GLIBCXX_USE_CXX11_ABI=0 -qopenmp -parallel-source-info=2
+```
+
+Using the ```cardiac_demo.sh``` submit script and the following command lines, you should be able to submit a serial job, OpenMP job, MPI job and finally a hybrid job (MPI + OpenMP):
+
+```
+cd $HOME/snow-labs/user-training/examples/
+sbatch --ntasks=1  --cpus-per-task=1  cardiac_demo.sh
+sbatch --ntasks=1  --cpus-per-task=16 cardiac_demo.sh
+sbatch --ntasks=16 --cpus-per-task=1  cardiac_demo.sh
+sbatch --ntasks=4  --cpus-per-task=4  cardiac_demo.sh
+```
+
+Once you have done that, consider to:
+* list your jobs: ```squ```
+* check the output files: ```slurm-xxxx.out```
+* explore how much memory has been used in each job: ```sacct -o JobID,MaxVMSize,ReqMem -j xxxxx```
 
 ## Advanced Features
 

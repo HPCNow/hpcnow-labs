@@ -8,10 +8,10 @@ Cluster account.
 Laptop with SSH client.
 
 # ToDo
-Connect to the login node
+Open an interactive session from the login node:
 
 ```
-ssh username@login.mydomain.com -p 22022 -X
+interactive
 ```
 
 ## Checkpointing and Restart

@@ -8,13 +8,9 @@ Cluster account.
 Laptop with SSH client.
 
 ## ToDo
+Access to the login node
 
-### Connect to the login node
-
-```
-ssh username@login.mydomain.com -p 22022 -X
-```
-### Login vs compute nodes
+### Understand difference between login and compute nodes
 
 As mentioned in the first hands-on session, the login nodes are meant to be simple but very secure nodes to provide access to the files and to manage the batch jobs. 
 Those nodes are not suitable for running CPU intensive codes or compile your code. Actually, the binaries generated in the login nodes may not be compatible with the compute node or able to take advantage of the expected performance of the compute nodes.
@@ -38,6 +34,7 @@ In order to test the code and interact with the command line, you can use the ``
 
 ### Interactive command
 The interactive command allows you to get a remote shell session in a real compute node. This ensures that you will have the same user experience in an interactive session and in a batch job. At the same time, because it is an slurm job, your code is exposed to the same Slurm user environment which will be available in the batch job.
+This is specially important when you want to test core binding, memory affinity or MPI launchers.
 
 Because interactive is using valuable resources (real compute nodes) there is a default timeout for inactivity. Which means that after 5 minutes of inactivity, the interactive session is going to be killed and the content of the temporary folders is going to be removed (```$SHM_DIR```, ```$TMP_DIR```, ```$SCRATCH_DIR```).
 
@@ -63,6 +60,28 @@ Written by: Alan Orth <a.orth@cgiar.org>
 Modified by: Jordi Blasco <jordi.blasco@hpcnow.com>
 ```
 
+You can define your own preferences in ```$HOME/.slurm.env```. In order to do so, copy the default values into your home directory:
+
+```
+cp -p /sNow/snow-tools/etc/slurm.env $HOME/.slurm.env
+```
+And update the values as you wish. Example
+
+```
+DEF_PARTITION=interactive
+DEF_ARCH=skl
+DEF_MEM_PER_CPU=4
+DEF_NUM_CPUS=4
+DEF_NUM_TASKS=1
+DEF_JOB_NAME=interactive
+DEF_TIME=01:00:00
+SRUN_BIN=/usr/bin/srun
+#SRUN_OPTS="-n1 -N1 --mem-per-cpu=0 --pty --preserve-env --mpi=none -x11"
+SRUN_OPTS="-n1 -N1 --mem-per-cpu=0 --pty --preserve-env --mpi=none"
+INTERACTIVE_SHELL=/bin/bash
+INTERACTIVE_SHELL_OPTS=" "
+```
+
 ### Initiate an interactive job session:
 
 ```
@@ -70,7 +89,7 @@ interactive
 ```
 
 ### Available software
-You can use a variety of software already installed on the cluster. The software is usually build with EasyBuild by the SysAdmins of the cluster and accessible using LMOD. 
+You can use a variety of software already installed on the cluster. The software is usually build with EasyBuild by the SysAdmins of the cluster and accessible using LMOD.
 
 ### User Environment
 LMOD is very useful to manage environment variables for each application and it is very easy to use. It loads the needed environment by a certain application and its dependencies automatically. The command line is fully compatible with the previous 'Environment Modules', and it provides simple short-cuts and advanced features.

@@ -7,14 +7,8 @@ In this hands-on, we are going to collect statistics and key metrics with Intel 
 Cluster account.
 Laptop with SSH client.
 
-# ToDo
-Connect to the login node
-
-```
-ssh username@login.mydomain.com -p 22022 -X
-```
-
-Open an interactive session
+## ToDo
+Open an interactive session from the login node:
 
 ```
 interactive

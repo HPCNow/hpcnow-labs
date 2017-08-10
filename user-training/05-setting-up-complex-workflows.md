@@ -8,15 +8,15 @@ Cluster account.
 Laptop with SSH client.
 
 # ToDo
-Connect to the login node
+Open an interactive session from the login node:
 
 ```
-ssh username@login.mydomain.com -p 22022 -X
+interactive
 ```
 
 ## Job array based on multiple input files or parameters
 If you need to explore several parameters or to use several input files you can create a mapping file like params.dat and use a single array job description file to run all the simulations. 
-The script array_builder.sh is a simple example that generates the params.dat file. In this case, the params.dat contains 500 lines.
+The script ```array_builder.sh``` is a simple example that generates the params.dat file. In this case, the params.dat contains 500 lines.
 
 ```
 #!/bin/bash
@@ -45,7 +45,7 @@ done
 
 ## Job dependencies
 
-## Chain Jobs
+### Chain Jobs
 
 You can use chain jobs to create dependencies between jobs.
 This is often the case if a job relies on the result of one or more preceding jobs.
