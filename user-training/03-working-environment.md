@@ -31,7 +31,9 @@ In order to test the code and interact with the command line, you can use the ``
  - download the results
  - submit and manage batch jobs
  - initiate an interactive job session
-
+ 
+The following diagram represents the path to get access to HPC resources:
+![User Environment](images/user_environment.png?raw=true "User Environment")
 ### Interactive command
 The interactive command allows you to get a remote shell session in a real compute node. This ensures that you will have the same user experience in an interactive session and in a batch job. At the same time, because it is an slurm job, your code is exposed to the same Slurm user environment which will be available in the batch job.
 This is specially important when you want to test core binding, memory affinity or MPI launchers.
