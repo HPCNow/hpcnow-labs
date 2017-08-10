@@ -32,11 +32,11 @@ You can define those requirements as options of the ```sbatch``` command or incl
 ```
 #!/bin/bash
 #SBATCH -J JobName
-#SBATCH --time=08:00:00		# Walltime
+#SBATCH --time=08:00:00	  	# Walltime
 #SBATCH --mem-per-cpu=4096	# memory/cpu (in MB)
-#SBATCH --ntasks=2		    # 2 tasks
-#SBATCH --cpus-per-task=4	# number of cores per task
-#SBATCH --nodes=1		    # number of nodes
+#SBATCH --ntasks=2		       # 2 tasks
+#SBATCH --cpus-per-task=4	 # number of cores per task
+#SBATCH --nodes=1		        # number of nodes
 ```
 
 ### Nodes and Job States
@@ -185,9 +185,9 @@ srun serial_binary
 ```
 #!/bin/bash
 #SBATCH -J OpenMPJob
-#SBATCH --time=01:00:00     # Walltime
+#SBATCH --time=01:00:00
 #SBATCH --mem-per-cpu=8G
-#SBATCH --cpus-per-task=8   # 8 OpenMP Threads
+#SBATCH --cpus-per-task=8
 ml Application
 srun openmp_binary
 ```
@@ -197,9 +197,9 @@ srun openmp_binary
 ```
 #!/bin/bash
 #SBATCH -J MPIJob
-#SBATCH --time=01:00:00     # Walltime
-#SBATCH --ntasks=2          # number of tasks
-#SBATCH --mem-per-cpu=8G    # memory/cpu
+#SBATCH --time=01:00:00
+#SBATCH --ntasks=2
+#SBATCH --mem-per-cpu=8G
 ml Application
 srun mpi_binary
 ```
