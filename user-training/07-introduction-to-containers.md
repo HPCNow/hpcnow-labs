@@ -132,7 +132,9 @@ sbatch --image=$HOME/singularityhub-centos-master.img --wrap="srun uname -a"
 
 ## Install Singularity in your workstation 
 
-Note that this quickstart is intended for using Singularity on your personal workstation, where you have installed Singularity and have sudo. If you only have access to Singularity on a shared cluster resource, you will be able to go through all parts of this tutorial that do not require writing to an image. First, if you are on your local machine, let’s install Singularity.
+We strongly suggest to create the basic template of your container in your personal workstation, where you have installed Singularity and you also have sudo privileges. If you want to expose all the instruction sets available in the architecture of your cluster, you may want to transfer the container to the cluster and compile the software there. 
+
+In order to install Singularity in your workstation, just follow these simple instructions:
 
 ```
 VERSION=2.3.1
