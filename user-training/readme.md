@@ -14,7 +14,7 @@ As part of sNow! project, and as part of community effort, we would like to enco
 | [Checkpointing and Restart](06-checkpointing-and-restart.md)          | Intermediate          |
 | [Introduction to Containers](07-introduction-to-containers.md)        | Intermediate          |
 | [Intel Trace Collector](08-intel-trace-collector.md)                  | Intermediate/Advanced |
-| [Intel Trace Analyszer](09-intel-trace-analyzer.md)                   | Intermediate/Advanced |
+| [Intel Trace Analyzer](09-intel-trace-analyzer.md)                    | Intermediate/Advanced |
 | [Intel MPI Runtime Tuning](10-mpi-runtime-tuning.md)                  | Intermediate/Advanced |
 
 ## Reference Books
