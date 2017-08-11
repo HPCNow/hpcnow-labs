@@ -27,9 +27,11 @@ interactive
 
 You can make and customize containers locally, and then run them on your shared resource. You can even import Docker image content without sudo permissions. Singularity also allows you to leverage the resources of whatever host you are on. This includes HPC interconnects, resource managers, file systems, GPUs and/or accelerators, etc.
 
-The following diagram defines the workflow to create, populate and finally run the singularity container. source: [http://singularity.lbl.gov](http://singularity.lbl.gov)
+The following diagram defines the workflow to create, populate and finally run the singularity container. 
 
 ![Singularity Flow](images/singularity-2.3-flow.png?raw=true "Singularity Flow")
+
+source: [http://singularity.lbl.gov](http://singularity.lbl.gov)
 
 
 ### Create a container image
