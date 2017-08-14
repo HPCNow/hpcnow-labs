@@ -16,6 +16,7 @@ As part of sNow! project, and as part of community effort, we would like to enco
 | [Intel Trace Collector](08-intel-trace-collector.md)                  | Intermediate/Advanced |
 | [Intel Trace Analyzer](09-intel-trace-analyzer.md)                    | Intermediate/Advanced |
 | [Intel MPI Runtime Tuning](10-mpi-runtime-tuning.md)                  | Intermediate/Advanced |
+| [Single Task Tuning](11-single-task-tuning.md)                        | Advanced              |
 
 ## Reference Books
 * Introduction to high-performance scientific computing (2nd edition), by Victor Eijkhout, Lulu, 2015
