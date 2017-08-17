@@ -11,9 +11,7 @@ In general, all the codes can take advantage of this exercise, from simple seria
 
 ## ToDo
 
-In this hands-on session we are going to use a simple matrix multiplication example to explain how to identify opportunities to tune single tasks code.
-[serial_mm.c](examples/single_task_tuning/serial_mm.c)
-[openmp_mm.c](examples/single_task_tuning/openmp_mm.c)
+In this hands-on session we are going to use a simple matrix multiplication example to explain how to identify opportunities to tune single tasks code. Square matrix multiplication involve *n* multiplications and *n−1* additions per element. Since there are *n<sup>2</sup>* elements, the dot product must be computed *n<sup>2</sup>* times. The total number of operations is *n<sup>2</sup>(n+(n−1))=2n<sup>3</sup>−n<sup>2</sup>* which means [computational complexity](https://en.m.wikipedia.org/wiki/Computational_complexity_of_mathematical_operations) of *O(n<sup>3</sup>)* using schoolbook algorithm.
 
 Load the required environment for this hands-on:
 
@@ -21,7 +19,7 @@ Load the required environment for this hands-on:
 ml intel/2017a
 ```
 
-Compile the first serial example (```serial_mm.c```) and run the program: 
+Compile the first serial example ([```serial_mm.c```](examples/single_task_tuning/serial_mm.c)) and run the program: 
 
 ```
 cd examples/single_task_tuning
@@ -79,7 +77,7 @@ icc -parallel -O3 -qopt-report-phase:par -qopt-report=5 serial_mm.c -o serial_mm
 This generates a new report file (```serial_mm.optrpt```) with the attemps to parallelize the code with OpenMP. 
 
 The compiler reports some suggestions but as developers of the code we already know that there are better ways to implement OpenMP directives in this simple code.
-Compare the suggested OpenMP directives with those available in the file ```openmp_mm.c```
+Compare the suggested OpenMP directives with those available in the file [```openmp_mm.c```](examples/single_task_tuning/openmp_mm.c)
 
 ```
 icc -qopenmp -O3 -qopt-report-phase:openmp -qopt-report=5 openmp_mm.c -o openmp_mm
