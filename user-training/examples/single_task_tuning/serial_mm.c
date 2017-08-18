@@ -11,8 +11,8 @@
 #include <time.h>
 
 #define NRA 10000              /* number of rows in matrix A */
-#define NCA 1500               /* number of columns in matrix A */
-#define NCB 700                /* number of columns in matrix B */
+#define NCA 1000               /* number of columns in matrix A */
+#define NCB 1000               /* number of columns in matrix B */
 
 int main (int argc, char *argv[]) 
 {

@@ -80,7 +80,7 @@ The compiler reports some suggestions but as developers of the code we already k
 Compare the suggested OpenMP directives with those available in the file [```openmp_mm.c```](examples/single_task_tuning/openmp_mm.c)
 
 ```
-icc -qopenmp -O3 -qopt-report-phase:openmp -qopt-report=5 openmp_mm.c -o openmp_mm
+icc -qopenmp -O3 -xHost -qopt-report-phase:openmp -qopt-report=5 openmp_mm.c -o openmp_mm_novec -no-vec
 ```
 
 The report will tell only what we instructed to parallelize. 
@@ -95,6 +95,6 @@ for i in 1 2 4 6 8 12; do sbatch --cpus-per-task=$i scalability_test.sh ; done
 Finally, combine both levels of parallelism a the same time and submit again the jobs to find the most optimal number of threads:
 
 ```
-icc -qopenmp -O3 -xHost -fp-model fast=2 openmp_mm.c -o openmp_mm
+icc -qopenmp -O3 -xHost openmp_mm.c -o openmp_mm
 for i in 1 2 4 6 8 12; do sbatch --cpus-per-task=$i scalability_test.sh ; done
 ```
