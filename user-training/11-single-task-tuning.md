@@ -92,6 +92,8 @@ cd $HOME/snow-labs/user-training/examples/single_task_tuning
 for i in 1 2 4 6 8 12; do sbatch --cpus-per-task=$i scalability_test.sh ; done
 ```
 
+You can review the benchmark results here: $HOME/snow-labs/user-training/OUT/benchmark-results.txt
+
 Finally, combine both levels of parallelism a the same time and submit again the jobs to find the most optimal number of threads:
 
 ```
