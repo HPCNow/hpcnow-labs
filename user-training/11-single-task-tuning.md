@@ -22,7 +22,7 @@ ml intel/2017a
 Compile the first serial example ([```serial_mm.c```](examples/single_task_tuning/serial_mm.c)) and run the program: 
 
 ```
-cd examples/single_task_tuning
+cd $HOME/snow-labs/user-training/examples/single_task_tuning
 icc serial_mm.c -o serial_mm_default
 ./serial_mm_default
 ```
@@ -33,7 +33,7 @@ In order to remove noise related with the IO, comment the loop responsible for w
 Compile it and run it again in order to evaluate a real improvement in the computational component of the code.
 
 ```
-cd examples/single_task_tuning
+cd $HOME/snow-labs/user-training/examples/single_task_tuning
 icc serial_mm.c -o serial_mm_default
 ./serial_mm_default
 ```
@@ -85,25 +85,16 @@ icc -qopenmp -O3 -qopt-report-phase:openmp -qopt-report=5 openmp_mm.c -o openmp_
 
 The report will tell only what we instructed to parallelize. 
 
-Review the scalability of the code by increasing the number of OpenMP threads from 1 to 12.
+Using the [```scalability_test.sh```](examples/single_task_tuning/scalability_test.sh) available in ```$HOME/snow-labs/user-training/examples/single_task_tuning``` and the following command lines, you should be able to find the most optimal number of OpenMP threads to run with. 
+
 ```
-export OMP_NUM_THREADS=1
-./openmp_mm
-export OMP_NUM_THREADS=2
-./openmp_mm
-export OMP_NUM_THREADS=4
-./openmp_mm
-export OMP_NUM_THREADS=6
-./openmp_mm
-export OMP_NUM_THREADS=8
-./openmp_mm
-export OMP_NUM_THREADS=12
-./openmp_mm
+cd $HOME/snow-labs/user-training/examples/single_task_tuning
+for i in 1 2 4 6 8 12; do sbatch --cpus-per-task=$i scalability_test.sh ; done
 ```
 
-Finally, combine both levels of parallelism a the same time and execute the program again with the most optimal number of threads:
+Finally, combine both levels of parallelism a the same time and submit again the jobs to find the most optimal number of threads:
 
 ```
 icc -qopenmp -O3 -xHost -fp-model fast=2 openmp_mm.c -o openmp_mm
-./openmp_mm
+for i in 1 2 4 6 8 12; do sbatch --cpus-per-task=$i scalability_test.sh ; done
 ```

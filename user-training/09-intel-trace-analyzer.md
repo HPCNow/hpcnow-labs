@@ -11,7 +11,7 @@ Laptop with SSH client.
 Open an interactive session from the login node:
 
 ```
-interactive
+interactive -X11
 ```
 
 Load the following user environment:
@@ -26,7 +26,7 @@ source itacvars.sh impi5
 Move to folder where the traces had been collected and open the trace file with:
 
 ```
-cd $HOME/snow-labs/user-training/hands-on-09/OUT/XXXXXX
+cd $HOME/snow-labs/user-training/OUT/XXXXXX
 traceanalyzer ./heart_demo.single.stf &
 ```
 

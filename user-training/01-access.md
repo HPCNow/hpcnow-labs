@@ -54,6 +54,6 @@ source ~/.bashrc
 ### Download the training material into your home directory:
 
 ```
-git clone https://github.com/HPCNow/snow-labs
+git clone --recursive https://github.com/HPCNow/snow-labs
 ```
 
