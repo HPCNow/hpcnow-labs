@@ -100,3 +100,22 @@ Finally, combine both levels of parallelism a the same time and submit again the
 icc -qopenmp -O3 -xHost openmp_mm.c -o openmp_mm
 for i in 1 2 4 6 8 12; do sbatch --cpus-per-task=$i scalability_test.sh ; done
 ```
+
+## Need for more scalability and best practices
+As you have noticed, auto-vectorization had improved the performance of the serial code, but the auto-parallelization did not show any gain. You can look for a more efficient [parallel matrix multiplication algorithm](https://en.m.wikipedia.org/wiki/Matrix_multiplication_algorithm#Parallel_and_distributed_algorithms) which reduces the computational complexity and improves the scalability.
+
+Compare the content of [openmp_mm_tuned.c](examples/single_task_tuning/openmp_mm_tuned.c) with your current version and explore the performance improvement by using a more efficient algorithm.
+
+```
+icc -qopenmp -O3 -xHost openmp_mm_tuned.c -o openmp_mm
+for i in 1 2 4 6 8 12; do sbatch --cpus-per-task=$i scalability_test.sh ; done
+```
+
+The most advanced algorithms are usually available in [advanced numerical libraries](https://en.wikipedia.org/wiki/List_of_numerical_libraries) like "[Basic Linear Algebra Subprograms](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms)".
+
+These libraries hide the complexity around very common mathematical operations. In this [example](https://software.intel.com/en-us/node/529735), the matrix multiplication is reduced to this call to the dgemm routine:
+
+```
+cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
+           m, n, k, alpha, A, k, B, n, beta, C, n);
+```
