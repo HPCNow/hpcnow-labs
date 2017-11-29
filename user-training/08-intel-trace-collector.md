@@ -1,4 +1,13 @@
 # Hands-On 08: Intel Trace Collector
+<!--
+Copyright (C) 2017 Jordi Blasco
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+-->
 In this hands-on, we are going to collect statistics and key metrics with Intel MPI and Intel Trace Collector. If your application is already compiled with Intel MPI, we strongly suggest you to use your own code using a short test.
 
 *Estimated time : 15 minutes*

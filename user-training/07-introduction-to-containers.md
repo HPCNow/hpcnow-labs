@@ -1,4 +1,13 @@
 # Hands-On 07: Running HPC jobs in containers
+<!--
+Copyright (C) 2017 Jordi Blasco
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+-->
 In this hands-on, we are going to setup a realistic container environment based on Singularity using Slurm support for this container technology.
 
 Singularity containers allows users to have full control of their environment and also allows to have the exact user experience in any single place where the container runs.
