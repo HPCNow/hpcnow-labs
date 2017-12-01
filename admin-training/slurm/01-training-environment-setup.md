@@ -30,9 +30,9 @@ Click on the 'Global Tools' icon and select 'Host Network Manager'.
 Create a new host network in order to be able to access to the VM via SSH.
 
 The following examples are based on the following parameters. Change them is you need it.
-![virtualbox-host-network-manager-01](images/virtualbox-host-network-manager-01.png?raw=true "Host Network Manager 01")
+![Host Network Adapter](../images/virtualbox-host-network-manager-01.png?raw=true "Host Network Manager 01")
 
-![virtualbox-host-network-manager-02](images/virtualbox-host-network-manager-02.png?raw=true "Host Network Manager 02")
+![Host Network DHCP](../images/virtualbox-host-network-manager-02.png?raw=true "Host Network Manager 02")
 
 ### Download slurm training VM image
 The slurm training image can be downloaded from [SuSE Studio](https://susestudio.com/a/MnLYey/slurm-17-02-leap-42-1) or from [HPCNow! repository server](http://snow.hpcnow.com/training/Slurm_17.02_Leap_42.1.x86_64-0.0.14.ovf.tar.gz) (preferred option).
