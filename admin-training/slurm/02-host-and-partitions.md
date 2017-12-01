@@ -28,16 +28,15 @@ Modify the following file in order to update the compute nodes available in the 
   * 2 sockets & 20 cores/socket
   * 384 GB
 * Add 1024 new nodes (knl[0001-1024]):
-  * 1 sockets & 72 cores/socket
+  * 1 sockets & 68 cores/socket
   * 4 threads/core
-  * 256 GB
+  * 384 GB
 
-If you want, you can simulate a 9300 Intel Knights Landing cluster and call it Cori ;-)
+If you want, you can simulate a 9152 Intel Knights Landing cluster and call it Cori ;-)
 
 ### Setup a partition attending to the walltime limit
-Modify the following file in order to update the partitions available in the cluster: ```/etc/slurm/partitions.conf```
-Setup different priority for each partition.
-Setup low partition as default.
+1. Modify the following file in order to update the partitions available in the cluster: ```/etc/slurm/partitions.conf```
+2. Setup different priority for each partition.
 
 | Partition  |  Walltime  |
 | ---------- | ---------- |
