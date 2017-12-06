@@ -8,18 +8,18 @@ with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 -->
-In this hands-on, you will be able to setup different QoS to define useful limits, and submit some jobs to this virtual cluster in order to see how it behaves. 
+In this hands-on session, you will setup different QoS levels to define useful limits and submit some jobs to this virtual cluster in order to see how it behaves. 
 
 *Estimated time: 30 minutes*
 
 ## Requirements
 * Laptop with SSH client.
-* Virtual Slurm environment created in the hands-on 01
+* Virtual Slurm environment created in hands-on session 01
 * Previous hands-on completed
 
 ## QoS
 
-The Quality of Service (QOS) provides more flexibility and freedom compared to partitions (queues). Each job can be associated with a particular QoS which will affect the job in several ways. In this hands-on, we will define job limits and relative QoS priority. In the hands-on 07 we will review job preemption and some other features also provided by QoS.
+The Quality of Service (QoS) provides more flexibility and freedom compared to partitions (queues). Each job can be associated with a particular QoS which will affect the job in several ways. In this hands-on, we will define job limits and relative QoS priority. In hands-on session 07 we will review job preemption and some other features also provided by QoS.
 Visit this [link](https://slurm.schedmd.com/qos.html) for more information regarding QoS.
 
 ### Activate the Multi-Factor Priority
@@ -31,13 +31,13 @@ PriorityType=priority/multifactor
 ```
 
 Since we want to test the behavior in short period of time, the following values are very small and unrealistic for a production system. Consider updating those values in a real scenario.
-We suggest submitting large jobs with short walltime using different user accounts in order to see how the competition evolves between these users.
+We suggest submitting large jobs with short walltimes using different user accounts in order to see how the competition evolves between the users.
 
 ```
 PriorityDecayHalfLife=00:10:00
 PriorityFavorSmall=NO
 PriorityMaxAge=00:01:00
-PriorityUsageResetPeriod=DAYLY
+PriorityUsageResetPeriod=DAILY
 PriorityWeightAge=500
 PriorityWeightFairshare=0
 PriorityWeightJobSize=500
@@ -52,17 +52,17 @@ In order to explore the impact of QoS, change the following parameter:
 PriorityWeightQOS=100000
 ```
 
-Note that QOS only affects scheduling priority when the multi-factor plugin is loaded.
+Note that QoS only affects scheduling priority when the multi-factor plugin is loaded.
 
 ### Enforce Limits
 
-In order to enforce the QoS limits the following parameter must be set up:
+In order to enforce the QoS limits, the following parameter must be set up:
 
 ```
 AccountingStorageEnforce=qos,limits
 ```
 
-Note that if a user/group/job breaches a limit, the job(s) will be pending. Consider to set up the QoS ```DenyOnLimit``` flag in order to deny jobs at submission.
+Note that if a user/group/job breaches a limit, the job(s) will be pending. Consider setting up the QoS ```DenyOnLimit``` flag in order to deny jobs at submission.
 
 
 Setup a default QoS (normal) with a priority value 100. 
@@ -82,8 +82,7 @@ systemctl restart slurmd
 
 After that, you will be able to simulate activity and explore the behavior.
 
-You can use submit script based on examples folder.
-Or use the following long command line:
+You can use a submission script based on the examples folder or use the following long command line:
 ```
 sbatch -n 512 --array=1-1000 --wrap='env; srun -n 1 sleep 120'
 ```
@@ -97,9 +96,9 @@ su - user02 -c "sbatch -n 512 --array=1-1000 --wrap='env; srun -n 1 sleep 120'"
 
 ### Influence the behavior by playing with the QoS
 
-You can create some additional QoS using different values in order to limit a particular user or group of users.
+You can create some additional QoS levels using different values in order to limit a particular user or group of users.
 
-Here you have some examples:
+Here are some examples:
 
 Limit the maximum number of CPUs allocated per user:
 

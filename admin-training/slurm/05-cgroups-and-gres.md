@@ -14,24 +14,24 @@ In this hands-on, you will be able to setup CGroups support and basic custom GRE
 
 ## Requirements
 * Laptop with SSH client.
-* Virtual Slurm environment created in the hands-on 01
+* Virtual Slurm environment created in hands-on session 01
 * Previous hands-on completed
 
 ## CGroups 
 
 CGroups is a Linux kernel feature that limits, accounts for, and isolates the resource usage (CPU, memory, disk I/O, network, etc.) of a collection of processes.
 
-Cgroups provides the following features but not all of them are exposed in all the batch queue systems:
+CGroups provides the following features but not all of them are exposed in batch queue systems:
 * Resource limiting – groups can be set to not exceed a configured memory limit, which also includes the file system cache
 * Prioritization – some groups may get a larger share of CPU utilization or disk I/O throughput
 * Accounting – measures a group's resource usage, which may be used, for example, for billing purposes
 * Control – freezing groups of processes, their checkpointing and restarting
 
-The CGroups adoption in Slurm is the only safe way to suspend jobs in memory, enforce resource limits, and also deliver CPU binding, memory affinity, and GPU access. And for that reason HPCNow! strongly suggest incorporating CGroups in your production environment.
+The CGroups adoption in Slurm is the only safe way to suspend jobs in memory, enforce resource limits, and also deliver CPU binding, memory affinity, and GPU access. For this reason, HPCNow! strongly suggests incorporating CGroups in your production environment.
 
 ### proctrack/cgroup plugin
 
-The proctrack/cgroup plugin is used for process tracking and suspend/resume capability. proctrack/cgroup uses the freezer subsystem which is, at this time, the most reliable mechanism for tracking and control processes in Linux systems.
+The proctrack/cgroup plugin is used for process tracking and suspend/resume capability. proctrack/cgroup uses the freezer subsystem which is (at this time) the most reliable mechanism for tracking and controlling processes in Linux systems.
 
 In order to enable this plugin, we will set up the following parameter in slurm.conf:
 
@@ -85,7 +85,7 @@ TaskAffinity=yes
 
 ### jobacct_gather/cgroup plugin
 
-The jobacct_gather/cgroup plugin is used for the collection of accounting statistics for jobs, steps and tasks. While jobacct_gather/cgroup plugin is considered more accurate mechanism, it's slower than the jobacct_gather/linux plugin. HPCNow! suggests using jobacct_gather/linux plugin for HTC and large HPC systems.
+The jobacct_gather/cgroup plugin is used for the collection of accounting statistics for jobs, steps and tasks. While the jobacct_gather/cgroup plugin is considered to be a more accurate mechanism, it's slower than the jobacct_gather/linux plugin. HPCNow! suggests using jobacct_gather/linux plugin for HTC and large HPC systems.
 
 In order to enable this plugin, we will set up the following parameter in slurm.conf:
 
@@ -95,7 +95,7 @@ JobacctGatherType=jobacct_gather/cgroup
 
 ## Generic Resource Scheduling
 
-Generic REsource Scheduling (GRES) allows managing generic consumable resources per node through several plugins.
+Generic Resource Scheduling (GRES) allows managing generic consumable resources per node through several plugins.
 
 In order to enable GRES plugins, a comma delimited list of GRES must be provided in the ```GresTypes``` parameter defined in slurm.conf
 
@@ -128,9 +128,9 @@ NodeName=hsw[001-512] Name=bandwidth Count=4G
 
 Finally, restart the Slurm daemons to apply the changes.
 
-### Request GREs in a job
+### Request GRES in a job
 
-In order to request a specific GRES, the users need to use ```--gres``` or ```#SBATCH --gres``` options at job submit time.
+In order to request a specific GRES, the users need to use ```--gres``` or ```#SBATCH --gres``` options at job submission time.
 
 The option requires an argument specifying which generic resources are required and how many resources. The resource specification is of the form name[:type:count]. 
 
