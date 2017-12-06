@@ -10,12 +10,11 @@ Free Documentation License".
 -->
 In this hands-on, you are going to simulate a very large environment thanks to a tuned Slurm setup. You will be able to setup different hosts and partitions, and submit some jobs to this virtual cluster. Since this is not a real cluster, the commands performed by each job should be very light, like sleep or hostname command.
 
-The configuration that you will be able to setup in this virtual environment should be suitable for production with minor changes.
+The configuration that you will be able to set up in this virtual environment should be suitable for production with minor changes.
 
-*Estimated time : 45 minutes*
+*Estimated time: 45 minutes*
 
 ## Requirements
-* Cluster account.
 * Laptop with SSH client.
 * Virtual Slurm environment created in the hands-on 01
 
@@ -61,13 +60,13 @@ PartitionName=long   Nodes=hsw[001-512],skl[001-512],knl[0001-1024]  Default=YES
 
 ### Prevent mixing architectures
 
-In order to prevent mixing architectures in the same job, consider to export the following environment variable in /etc/profile.d/slurm.sh
+In order to prevent mixing architectures in the same job, consider exporting the following environment variable in /etc/profile.d/slurm.sh
 
 ```
 export SBATCH_CONSTRAINT="[hsw|skl|knl]"
 ```
 
-By default all the jobs will be routed to a unique architecture; unless the user request a specific architecture with ```#SBATCH -C hsw ``` or ```sbatch -C hsw script.sh```
+By default all the jobs will be routed to a unique architecture; unless the user requests a specific architecture with ```#SBATCH -C hsw ``` or ```sbatch -C hsw script.sh```
 
 ### Restart Slurm Daemons 
 Restart the Slurm daemons with the following command line:
@@ -108,4 +107,12 @@ You can submit as a different user with su command line:
 
 ```
 su - user01 -c "sbatch -n 512 --array=1-1000 --wrap='env; srun -n 1 sleep 120'"
+```
+
+The system contains 10 users (user[01-10]) but you can create your own user list and simulate the very similar system to your production environment.
+
+If the load is too high and some job fails, it may drain the virtual frontend node. In order to recover the cluster, execute the following command:
+
+```
+scontrol update frontendname=slurm-simulator State=RESUME
 ```

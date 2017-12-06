@@ -8,14 +8,12 @@ with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 -->
-In this hands-on, we are going to setup the required training environment to conduct the next sections of the training. 
-The complete training is designed to run in a virtual machine developed by HPCNow!
+In this hands-on, we are going to set up the required training environment to conduct the next sections of the training. 
+The complete training is designed to run on a virtual machine developed by HPCNow!
 
-*Estimated time : 15 minutes*
+*Estimated time: 15 minutes*
 
 ## Requirements
-
-* Cluster account.
 * Laptop with SSH client.
 
 ## ToDo
@@ -35,16 +33,35 @@ The following examples are based on the following parameters. Change them is you
 ![Host Network DHCP](../images/virtualbox-host-network-manager-02.png?raw=true "Host Network Manager 02")
 
 ### Download slurm training VM image
-The slurm training image can be downloaded from [SuSE Studio](https://susestudio.com/a/MnLYey/slurm-17-02-leap-42-1) or from [HPCNow! repository server](http://snow.hpcnow.com/training/Slurm_17.02_Leap_42.1.x86_64-0.0.14.ovf.tar.gz) (preferred option).
+The slurm training image can be downloaded from [HPCNow! repository server](http://snow.hpcnow.com/training/slurm/). The default format is *OVF Virtual Machine* but other options are also available.
+
+* [OVF Virtual Machine / ESXi (.ovf)](http://snow.hpcnow.com/training/slurm/Slurm_17.11_Leap_42.1.x86_64-0.0.11.ovf.tar.gz)
+* [VMware Workstation / VirtualBox (.vmdk)](http://snow.hpcnow.com/training/slurm/Slurm_17.11_Leap_42.1.x86_64-0.0.11.vmx.tar.gz)
+* [Preload ISO (.iso)](http://snow.hpcnow.com/training/slurm/Slurm_17.11_Leap_42.1.x86_64-0.0.11.iso)
+* [SUSE Cloud / OpenStack / KVM (.qcow2)](http://snow.hpcnow.com/training/slurm/Slurm_17.11_Leap_42.1.x86_64-0.0.11.qcow2.tar.gz)
 
 ### Import image
 
-Uncompress the tarball in your local disk and import image by clicking on the VirtualBox menu: 'File' -> 'import the appliance'.
+Uncompress the tarball (Slurm_17.11_Leap_42.1.x86_64-0.0.11.ovf.tar.gz) in your local disk and import image by clicking on the VirtualBox menu: 'File' -> 'import the appliance'.
+
+Set the following parameters:
+
+* name: slum-simulator
+* cpus: 4
+* memory: 4096 MB
+
+With those hardware resources, you will be able to simulate one of the top 10 of the [www.top500.org](https://www.top500.org/). If you don't have enough resources, keep in mind that the system simulated will be smaller.
+
+Once you have imported the VM, go to VM settings and change the first network interface to NAT, and the second network interface to host-only adapter.
+
+![first network interface](../images/virtualbox-nic-01.png?raw=true "first network interface")
+
+![second network interface](../images/virtualbox-nic-02.png?raw=true "second network interface")
 
 ### Start the virtual machine and access via SSH
-Start the virtual machine and access via SSH with your favorite SSH client:
+Start the virtual machine and access via SSH with your preferred SSH client:
 
-* host: 192.168.1.1
+* host: 10.1.1.1
 * port: 22
 * user: root
 * password: HPCNOW

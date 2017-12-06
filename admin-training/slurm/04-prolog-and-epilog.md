@@ -14,12 +14,12 @@ Slurm supports a multitude of prolog and epilog programs. Note that for security
 
 
 
-*Estimated time : 30 minutes*
+*Estimated time: 30 minutes*
 
 ## Requirements
-Cluster account.
-Laptop with SSH client.
-Slurm created in the hands-on 01
+* Laptop with SSH client.
+* Virtual Slurm environment created in the hands-on 01
+* Previous hands-on completed
 
 
 ## Prolog
@@ -102,7 +102,3 @@ rm -rf $SCRATCH_DIR 2>/dev/null >/dev/null
 rm -rf $SHM_DIR 2>/dev/null >/dev/null
 rm -rf $TMP_DIR 2>/dev/null >/dev/null
 ```
-
-
-
-
