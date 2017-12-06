@@ -8,7 +8,7 @@ with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 -->
-In this hands-on, you are going to simulate a very large environment thanks to a tuned Slurm setup. You will be able to setup different hosts and partitions, and submit some jobs to this virtual cluster. Since this is not a real cluster, the commands performed by each job should be very light, like sleep or hostname command.
+In this hands-on session, you are going to simulate a very large environment thanks to an optimised Slurm setup. You will be able to setup different hosts and partitions, and submit some jobs to this virtual cluster. Since this is not a real cluster, the commands performed by each job should be very light, like the sleep or hostname command.
 
 The configuration that you will be able to set up in this virtual environment should be suitable for production with minor changes.
 
@@ -16,7 +16,7 @@ The configuration that you will be able to set up in this virtual environment sh
 
 ## Requirements
 * Laptop with SSH client.
-* Virtual Slurm environment created in the hands-on 01
+* Virtual Slurm environment created in hands-on session 01
 
 ## Todo
 
@@ -109,9 +109,9 @@ You can submit as a different user with su command line:
 su - user01 -c "sbatch -n 512 --array=1-1000 --wrap='env; srun -n 1 sleep 120'"
 ```
 
-The system contains 10 users (user[01-10]) but you can create your own user list and simulate the very similar system to your production environment.
+The system contains 10 users (user[01-10]) but you can create your own user list and simulate a system very similar to your production environment.
 
-If the load is too high and some job fails, it may drain the virtual frontend node. In order to recover the cluster, execute the following command:
+If the load is too high and some jobs fail, it may drain the virtual frontend node. In order to recover the cluster, execute the following command:
 
 ```
 scontrol update frontendname=slurm-simulator State=RESUME

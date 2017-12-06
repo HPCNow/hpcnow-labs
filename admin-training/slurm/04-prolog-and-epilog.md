@@ -8,9 +8,9 @@ with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 -->
-In this hands-on, you will be able to setup custom prolog and epilog per job, task and srun.
+In this hands-on session, you will be able to setup a custom prolog and epilog per job, task and srun.
 
-Slurm supports a multitude of prolog and epilog programs. Note that for security reasons, these programs do not have a search path set. Either specify fully qualified path names in the program or set the "PATH" environment variable. The first table below identifies what prologs and epilogs are available for job allocations, when and where they run.
+Slurm supports a multitude of prolog and epilog programs. Note that for security reasons, these programs do not have a search path set. Either specify fully qualified path names in the program or set the "PATH" environment variable. The first table below identifies what prologs and epilogs are available for job allocations as well as where and when they run.
 
 
 
@@ -18,7 +18,7 @@ Slurm supports a multitude of prolog and epilog programs. Note that for security
 
 ## Requirements
 * Laptop with SSH client.
-* Virtual Slurm environment created in the hands-on 01
+* Virtual Slurm environment created in the hands-on session 01
 * Previous hands-on completed
 
 
@@ -29,7 +29,7 @@ Create three shell scripts with execution permissions:
 * /etc/slurm/prolog/srun.sh
 
 ### Setting Temporary IO Folders 
-Setup a job prolog (/etc/slurm/prolog/job.sh) to create temporary IO folders per job basis
+Setup a job prolog (/etc/slurm/prolog/job.sh) to create temporary IO folders on a per job basis
 
 ```
 #!/bin/bash
@@ -53,7 +53,7 @@ done
 
 ### Exposing new variables and modifying the user environment
 
-Create a task prolog to expose new variables and modifying the user environment (/etc/slurm/prolog/task.sh)
+Create a task prolog to expose new variables and modify the user environment (/etc/slurm/prolog/task.sh)
 
 ```
 #!/bin/bash
@@ -63,7 +63,7 @@ echo "export SHM_DIR=/dev/shm/jobs/$USER/$SLURM_JOBID"
 echo "export TMP_DIR=/tmp/jobs/$USER/$SLURM_JOBID"
 echo "export SCRATCH_DIR=/scratch/jobs/$USER/$SLURM_JOBID"
 
-# Define timeout for idle interactive job sessions
+# Define a timeout for idle interactive job sessions
 echo "export TMOUT=300"
 
 # Exporting a default value of OMP_NUM_THREADS for those jobs 
@@ -75,7 +75,7 @@ fi
 
 ### Job auditing (OGRT)
 Create a srun prolog to audit those applications executed with srun launcher (/etc/slurm/prolog/srun.sh).
-More information in this regard available in this link: https://github.com/georg-rath/ogrt
+More information on this is available here: https://github.com/georg-rath/ogrt
 
 ```
 echo "export OGRT_ACTIVE=1"

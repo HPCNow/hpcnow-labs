@@ -14,8 +14,8 @@ HPCNow!, hereby disclaims all copyright interest in this document
 David Tur, CEO of HPCNow!, 23 April 2017
 ```
 
-This folder contains the required material to deliver trainings to sNow! administrators. The content of this repo is distributed under GPLv3 license.
-As part of sNow! project, and as part of community effort, we would like to encourage you to contribute with feedback, improving the quality and including new training material to speed up the learning curve of the end users.
+This folder contains the required material to deliver training to sNow! administrators. The content of this repo is distributed under the GPLv3 license.
+As part of the sNow! project, and as part of a community effort, we would like to encourage you to contribute with feedback, improving the quality and/or including new training material to speed up the learning curve for end users.
 
 ## Common Sections
 
