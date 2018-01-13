@@ -253,6 +253,8 @@ sacctmgr -i create cluster NameOfMyCluster
 ```
 
 Finally, check if the installation has been done successfully. You should be able to see several tables populated by SlurmDBD.
+
+```
 # mysql -u root -p
 mysql> show databases;
 +--------------------+
@@ -272,4 +274,4 @@ mysql> show tables;
 | acct_coord_table                      |
 | acct_table                            |
 .........
-
+```
