@@ -10,7 +10,7 @@ Free Documentation License".
 -->
 In this hands-on, you will be able to setup and manage resource reservations.
 
-*Estimated time: 30 minutes*
+*Estimated time: 60 minutes*
 
 ## Requirements
 * Laptop with SSH client.
