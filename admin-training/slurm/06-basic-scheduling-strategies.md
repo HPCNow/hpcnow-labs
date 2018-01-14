@@ -24,7 +24,7 @@ No job submission plugins are used by default but HPCNow! recommends considering
 
 * *all_partitions*: sets default partition to all partitions on the cluster and routes the jobs to the partitions that meet the requirements.
 * *require_timelimit*: force job requests to include time limit
-* submit_throttle*: limits the number of job submissions that any single user can make. The limits are defined by the parameter: ```SchedulingParamters=jobs_per_user_per_hour=#```
+* submit_throttle*: limits the number of job submissions that any single user can make. The limits are defined by the parameter: ```SchedulerParameters=jobs_per_user_per_hour=#```
 * *lua*: enables an easy Lua scripting environment for interacting with functions exposed in the Job Submit Plugin API. There are some examples available in the [contribs/lua](https://github.com/SchedMD/slurm/tree/master/contribs/lua) directory.
 
 
