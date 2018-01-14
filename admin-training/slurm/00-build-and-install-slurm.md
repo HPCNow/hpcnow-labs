@@ -16,7 +16,7 @@ The process of building the Slurm packages can be simplified by taking advantage
 
 The installation of Slurm database and controller servers can be automated by taking advantage of the [sNow! roles](https://hpcnow.github.io/snow-documentation/mydoc_available_roles.html).
 
-*Estimated time : 60 minutes*
+*Estimated time: 60 minutes*
 
 ## Requirements
 * NFS server or cluster file system
@@ -29,7 +29,7 @@ The latest Slurm releases can be downloaded from here: https://www.schedmd.com/d
 Other releases can be downloaded from the official GitHub project: https://github.com/SchedMD/slurm/releases
 
 ## Pre-requisites
-Make sure that you have synchronised clocks and also consistent users and groups (UIDs and GIDs) across the cluster. No user login in the SlurmDBD and SlurmCTLD servers are required but those daemons need to have access to a consistent UID and GID in order to define and apply ACLs/QoS and accounting. 
+Make sure that you have synchronized clocks and also consistent users and groups (UIDs and GIDs) across the cluster. No user login in the SlurmDBD and SlurmCTLD servers are required but those daemons need to have access to a consistent UID and GID in order to define and apply ACLs/QoS and accounting. 
 
 
 The following two commands will enable and initiate the NTP daemon:
@@ -84,11 +84,11 @@ LENGTH:           0
 ```
 
 ## Dependencies
-In order to build the Slurm packages some development packages are required. The following instructions will guide you to install all the missing dependencies required to build the Slurm with most common funcionalities.
+In order to build the Slurm packages, some development packages are required. The following instructions will guide you to install all the missing dependencies required to build the Slurm with most common functionalities.
 
 ### SuSE based distributions
 
-For SuSE distributions you will need the two SLES SDK DVD in your repository. In order to have HDF5 support for Slurm profiling, you will also need to add the following repository:
+For SuSE distributions, you will need the two SLES SDK DVD in your repository. In order to have HDF5 support for Slurm profiling, you will also need to add the following repository:
 
 ```
 zypper ar http://download.opensuse.org/repositories/science/SLE_11_SP3/science.repo
@@ -215,9 +215,9 @@ The backup controller should be hosted on a different hardware. However, both ho
 
 By default, the backup controller detects when the primary fails and takes over for it. When the primary returns to service, it notifies the backup. At that point, the backup saves state and returns to backup mode.
 
-The SlurmDBD server must be installed in a different server(s), otherwise the native high availability will not work.
+The SlurmDBD server must be installed on a different server(s), otherwise, the native high availability will not work.
 
-The Slurm provides native high availability for the SlurmCTLD but not for SlurmDBD. Clusters managed by sNow! can also take advantage of additional high availability layers, achieving this way, the resilience required for a mission critical environment. More information [here](https://hpcnow.github.io/snow-documentation/mydoc_available_roles.html#slurmdbd).
+The Slurm provides native high availability for the SlurmCTLD but not for SlurmDBD. Clusters managed by sNow! can also take advantage of additional high availability layers, achieving this way, the resilience required for a mission-critical environment. More information [here](https://hpcnow.github.io/snow-documentation/mydoc_available_roles.html#slurmdbd).
 
 ## Setup SlurmDBD and MySQL
 
