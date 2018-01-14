@@ -16,13 +16,13 @@ As part of sNow! project, and as part of community effort, we would like to enco
 
 | Slurm Administration                                                         | Target Audience       |
 | ---------------------------------------------------------------------------- | --------------------- |
-| [Build and install Slurm in HA mode](slurm/00-build-and-install-slurm.md)    | Intermediate          |
-| [Training Environment Setup](slurm/01-training-environment-setup.md)         | Intermediate          |
-| [Host and Partitions](slurm/02-host-and-partitions.md)                       | Intermediate          |
-| [QoS](slurm/03-qos.md)                                                       | Intermediate          |
-| [Prolog and epilog](slurm/04-prolog-and-epilog.md)                           | Intermediate          |
-| [Cgroups and GRES](slurm/05-cgroups-and-gres.md)                             | Intermediate          |
-| [Basic scheduling strategies](slurm/06-basic-scheduling-strategies.md)       | Intermediate          |
-| [Advanced scheduling strategies](slurm/07-advanced-scheduling-strategies.md) | Advanced              |
-| [User management](slurm/08-user-management.md)                               | Intermediate          |
-| [Resource reservation](slurm/09-resource-reservation.md)                     | Intermediate          |
+| [Build and install Slurm in HA mode](00-build-and-install-slurm.md)    | Intermediate          |
+| [Training Environment Setup](01-training-environment-setup.md)         | Intermediate          |
+| [Host and Partitions](02-host-and-partitions.md)                       | Intermediate          |
+| [QoS](03-qos.md)                                                       | Intermediate          |
+| [Prolog and epilog](04-prolog-and-epilog.md)                           | Intermediate          |
+| [Cgroups and GRES](05-cgroups-and-gres.md)                             | Intermediate          |
+| [Basic scheduling strategies](06-basic-scheduling-strategies.md)       | Intermediate          |
+| [Advanced scheduling strategies](07-advanced-scheduling-strategies.md) | Advanced              |
+| [User management](08-user-management.md)                               | Intermediate          |
+| [Resource reservation](09-resource-reservation.md)                     | Intermediate          |
