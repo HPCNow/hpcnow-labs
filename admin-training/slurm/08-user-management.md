@@ -160,3 +160,9 @@ root                                          1.000000       17511              
   fire                                  33    0.132013           0                  0.000000   1.000000                                cpu=0,mem=0,energy=0,node=0,b+
   frost                                 33    0.132013           0                  0.000000   1.000000                                cpu=0,mem=0,energy=0,node=0,b+
 ```
+
+In order to review the associations per cluster, account, user and fairshare:
+
+```
+sacctmgr list assoc tree format=cluster,account,user,fairshare
+```
