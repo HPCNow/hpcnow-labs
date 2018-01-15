@@ -8,23 +8,23 @@ with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 -->
-In this hands-on, you will be able to setup and manage Slurm users based on shares and accounting.
+In this hands-on, you will learn how to setup and manage Slurm users based on shares and accounting.
 
 *Estimated time: 45 minutes*
 
 ## Requirements
 * Laptop with SSH client.
-* Virtual Slurm environment created in the hands-on 01
+* Virtual Slurm environment created in hands-on 01
 * Previous hands-on completed
 
 
 ## Enable Slurm Accounting and User Management
 
-Slurm accounting and user management rely on MySQL/MariaDB. If you want to setup fair sharing and/or QoS you will also need to activate the Multi-Factor Priority.
+Slurm accounting and user management relies on MySQL/MariaDB. If you want to setup fair sharing and/or QoS you will also need to activate the Multi-Factor Priority.
 
 Slurm database allows managing several clusters. Each one with a different SlurmCTLD server or the same server with multiple instances of SlurmCTLD.
 
-Multiclustering and cluster federation provides more freedom setting limits, groups, ACLs or priority. So, if you have several clusters and you want to define different limits attending to the platform, then multi-clustering is the perfect solution for you.
+Multiclustering and cluster federation provides more freedom setting limits, groups, ACLs or priority. So, if you have several clusters and you want to define different limits for each platform, then multi-clustering is the perfect solution for you.
 
 ## Account Management 
 
@@ -45,7 +45,7 @@ The sacctmgr options available for adding or modifying an account are:
 
 This cluster is shared between two institutions, UoD (40% ownership) and GIT (60% ownership). In addition to that, UoD is divided by three departments. All of them with the same share.
 
-Add the following accounts to cluster "simulator" with the commands:
+Add the following accounts to the cluster "simulator" with the commands:
 
 ```
 sacctmgr -i add account uod Description=UoD Cluster=simulator \
@@ -69,7 +69,7 @@ sacctmgr -i add account fire Description=fire Cluster=simulator \
              parent=UoD fairshare=33
 ```
 
-If you have more clusters and you are fine sharing the resources and limits across all of them, you can either not specify a cluster or provide a list of clusters with comma separated.
+If you have more clusters and you are fine sharing the resources and limits across all of them, you can either not specify a cluster or provide a list of clusters (comma separated).
 
 You can modify existing accounts with SQL-like options, using keywords like ```where``` and ```set```:
 
@@ -92,7 +92,7 @@ sacctmgr remove account where name=<account_name>
 
 ## Setting up users
 
-You can manage users using similar syntax but the options exposed to user management are different.
+You can manage users using similar syntax but the options exposed for user management are different.
 
 ### User Options
 
@@ -103,7 +103,7 @@ You can manage users using similar syntax but the options exposed to user manage
 * Name: username
 * NewName: used to rename a user.
 * Partition= limits the user(s) to a partition or list of partitions.
-* AdminLevel: allows to define accounting privileges to this user. The available options are:
+* AdminLevel: allows defining accounting privileges for this user. The available options are:
 
 | AdminLevel | privileges |
 | ---------- | ---------- |
@@ -135,7 +135,7 @@ Example:
 sacctmgr modify user where name=user08 set DefaultAccount=fire
 ```
 
-This will change all users with a default account "fire" to account "arcane".
+This will change all users with the default account "fire" to account "arcane".
 
 To remove a user:
 
