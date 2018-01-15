@@ -1,4 +1,4 @@
-# Hands-On 06: Basic Scheduling Strategies
+# Hands-On 05: Basic Scheduling Strategies
 <!--
 Copyright (C) 2017 Jordi Blasco
 Permission is granted to copy, distribute and/or modify this document

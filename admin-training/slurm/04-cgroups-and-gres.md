@@ -1,4 +1,4 @@
-# Hands-On 05: Cgroups and GRES
+# Hands-On 04: Cgroups and GRES
 <!--
 Copyright (C) 2017 Jordi Blasco
 Permission is granted to copy, distribute and/or modify this document

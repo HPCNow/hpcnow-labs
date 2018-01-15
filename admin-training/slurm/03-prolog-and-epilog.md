@@ -1,4 +1,4 @@
-# Hands-On 04: Prolog and Epilog
+# Hands-On 03: Prolog and Epilog
 <!--
 Copyright (C) 2017 Jordi Blasco
 Permission is granted to copy, distribute and/or modify this document
