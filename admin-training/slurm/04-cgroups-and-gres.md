@@ -139,5 +139,5 @@ In order to request a specific GRES, the users need to use ```--gres``` or ```#S
 The option requires an argument specifying which generic resources are required and how many resources. The resource specification is of the form name[:type:count]. 
 
 ```
-sbatch --gres=bandwidth:2G
+su - user01 -c "sbatch -n 512 --gres=bandwidth:2G --wrap='env; srun -n 1 sleep 120'"
 ```
