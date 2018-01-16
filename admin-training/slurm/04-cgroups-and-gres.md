@@ -115,7 +115,9 @@ GresTypes=bandwidth
 Setup the nodes.conf file to specify the number of resources available in each node
 
 ```
-NodeName=hsw[001-512] Gres=bandwidth:no_consume:4G
+NodeName=hsw[001-512]      NodeAddr=slurm-simulator NodeHostName=slurm-simulator RealMemory=258048  Sockets=2 CoresPerSocket=12  ThreadsPerCore=1 State=UNKNOWN Feature=hsw Gres=bandwidth:no_consume:4G
+NodeName=skl[001-512]      NodeAddr=slurm-simulator NodeHostName=slurm-simulator RealMemory=389120  Sockets=2 CoresPerSocket=20  ThreadsPerCore=1 State=UNKNOWN Feature=skl
+NodeName=knl[0001-1024]    NodeAddr=slurm-simulator NodeHostName=slurm-simulator RealMemory=389120  Sockets=1 CoresPerSocket=72  ThreadsPerCore=4 State=UNKNOWN Feature=knl
 ```
 
 Each compute node with generic resources must also contain a gres.conf file describing which resources are available on the node, their count, associated device files and cores which should be used with those resources. The configuration parameters available are:
