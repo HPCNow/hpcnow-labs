@@ -26,8 +26,8 @@ Slurm supports a multitude of prolog and epilog programs. Note that for security
 Open ```/etc/slurm/slum.conf``` and setup the following parameters:
 
 ```
-JobEpilog=/etc/slurm/prolog/job.sh
-JobProlog=/etc/slurm/prolog/job.sh
+Epilog=/etc/slurm/prolog/job.sh
+Prolog=/etc/slurm/prolog/job.sh
 TaskEpilog=/etc/slurm/prolog/task.sh
 TaskProlog=/etc/slurm/prolog/task.sh
 SrunEpilog=/etc/slurm/epilog/srun.sh
