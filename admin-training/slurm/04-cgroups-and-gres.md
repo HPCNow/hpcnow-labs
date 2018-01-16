@@ -91,7 +91,7 @@ The jobacct_gather/cgroup plugin is used for the collection of accounting statis
 In order to enable this plugin, we will set up the following parameter in slurm.conf:
 
 ```
-JobacctGatherType=jobacct_gather/cgroup
+JobAcctGatherType=jobacct_gather/cgroup
 ```
 
 ## Generic Resource Scheduling
