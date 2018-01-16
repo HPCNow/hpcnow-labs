@@ -8,20 +8,20 @@ with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 -->
-In this hands-on, you will be able to setup and manage resource reservations.
+In this hands-on, you will learn how to setup and manage resource reservations.
 
 *Estimated time: 60 minutes*
 
 ## Requirements
 * Laptop with SSH client.
-* Virtual Slurm environment created in the hands-on 01
+* Virtual Slurm environment created in hands-on 01
 * Previous hands-on completed
 
 
 ## Resource Reservation
 A resource reservation defines the resources in that reservation and a time period during which the reservation is available for a limited number of users.
 
-Reservations can only be managed by user root or SlurmUser through the scontrol command. If you want to run those operations as a regular user, you should consider enabling sudo access to the scontrol command.
+Reservations can only be managed by user root or SlurmUser through the scontrol command. If you want to run those operations as a regular user, you should consider enabling sudo access for the scontrol command.
 
 Any job running in the reservation will be canceled after the reservation reaches its EndTime, unless you have enabled ```ResvOverRun``` in slurm.conf.
 
@@ -56,7 +56,7 @@ scontrol create reservation ReservationName=test01 \
 
 This creates a reservation of 256 nodes, available only for users user01 and user02, starting on 2017-12-12T10:00:00 and it will last for 30 minutes.
 
-The command ```scontrol show res```, list the reservations defined in the system:
+The command ```scontrol show res```, lists the reservations defined in the system:
 
 ```
 scontrol show res
@@ -67,7 +67,7 @@ ReservationName=test01 StartTime=2018-01-19T10:00:00 EndTime=2018-01-19T10:30:00
 ```
 
 ### Modify a reservation
-Reservations can only be modified by user root. In this example the duration, node count, and the users granted access can be changed with the following command:
+Reservations can only be modified by the root user. In this example the duration, node count, and the users granted access can be changed with the following command:
 
 ```
 scontrol update reservation=test01 NodeCnt=24
@@ -75,7 +75,7 @@ scontrol update reservation=test01 NodeCnt=24
 
 ### Delete a reservation
 
-Reservations are automatically purged once they expired. They may also be manually deleted by user root. 
+Reservations are automatically purged once they expire. They may also be manually deleted by root user. 
 If there are jobs running on a reservation, this reservation cannot be deleted.
 
 
@@ -85,7 +85,7 @@ scontrol delete reservation=test01
 
 ### Reservation Use
 
-In order to use the reservation, the job must request that. 
+In order to use the reservation, the job must request it. 
 
 ```
 sbatch --reservation=test01 -n 1024 -t 00:05:00 --wrap="srun -n 1 sleep 120"
@@ -111,9 +111,9 @@ The flags:
 * ```IGNORE_JOBS``` is used to indicate that we can ignore currently running jobs when creating this reservation.
 
 
-### Licenses Reservations
+### License Reservations
 
-The ```LICENSE_ONLY``` flag is used to indicate that the reservation will prevent any other job requesting those license from being scheduled on this cluster during this period of time.
+The ```LICENSE_ONLY``` flag is used to indicate that the reservation will prevent any other job requesting those licenses from being scheduled on this cluster during this period of time.
 
 
 ```

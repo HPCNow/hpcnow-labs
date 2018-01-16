@@ -8,13 +8,13 @@ with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 -->
-In this hands-on, you will be able to setup advanced scheduling strategies which will allow you to increase even more the cluster utilization and also achieve even more fairness access to the shared resources.
+In this hands-on, you will learn how to setup advanced scheduling strategies, allowing for further improvements in cluster utilization and more equitable sharing of cluster resources.
 
 *Estimated time: 60 minutes*
 
 ## Requirements
 * Laptop with SSH client.
-* Virtual Slurm environment created in the hands-on 01
+* Virtual Slurm environment created in hands-on 01
 * Previous hands-on completed
 
 ### Preemption
@@ -22,30 +22,31 @@ In this hands-on, you will be able to setup advanced scheduling strategies which
 Job preemption allows stopping one or more "low-priority" jobs to let a "high-priority" job run. Different job preemption mechanisms can be implemented: job suspension, job checkpointing and restart and job cancel.
 With job preemption, the *cluster domination by long-term jobs can be mitigated*. By adopting this strategy, you should be able to schedule really large (and high-priority) jobs quite quickly by suspending other low priority jobs.
 
-In Slurm, job preemption can be defined by relative priority between partitions or QoS. Even though QoS provides more options, due time constraints of this hands-on session, the job preemption will be handled by partition priority. If you need more flexibility, you should consider to implement QoS and potentially develop a submit plugin for partition or QoS routing.
+In Slurm, job preemption can be defined by relative priority between partitions or QoS. Even though QoS provides more options, due to the time constraints of this hands-on session, the job preemption will be handled by partition priority. If you need more flexibility, you should consider implementing QoS and potentially developing a submission plugin for partition or QoS routing.
 
-#### Job Preemption based on suspension mechanism
+#### Job preemption based on suspension mechanism
 
-By adopting job suspension as preemption mechanism, the users could run large and short simulations with a reasonable short waiting time.
-A combination of a large number of short single core jobs (including parametric jobs) waiting in the partition, the efficiency of the cluster could grow easily to 90% of utilization.
+By adopting job suspension as the preemption mechanism, the users could run large and short simulations with a reasonably short waiting time.
+With a large number of short single core jobs (including parametric jobs) waiting in the partition, the utilization of the cluster could easily grow to 90%.
 
-Unfortunately, this solution comes with a price. The suspended jobs are bound to the allocated nodes, and is not possible to resume those jobs until the high priority job is finished; even if you have resources available to run them.
+Unfortunately, this solution comes with a price. The suspended jobs are bound to the allocated nodes, and it's not possible to resume those jobs until the high priority job is finished; even if you have the resources available to run them.
 
-#### Job Preemption based on Checkpointing and restart mechanism
+#### Job preemption based on checkpointing and restart mechanism
 
-Several HPC facilities see the Checkpointing & Restart (C&R) as a "resilience" mechanism because you can restart the job from the last checkpoint and save several CPUTime in case of disaster. HPCNow! strongly suggest to consider to ban running long jobs (more than ~7 days) if the code doesn't have checkpointing mechanism or if it's not capable to use 3rd-party C&R software ([SCR](https://computation.llnl.gov/projects/scalable-checkpoint-restart-for-mpi), [DMTCP](http://dmtcp.sourceforge.net/), etc.).
+Several HPC facilities see the Checkpointing & Restart (C&R) as a "resilience" mechanism because you can restart the job from the last checkpoint and save CPU time in case of a disaster. HPCNow! strongly suggests you consider banning long running jobs (more than ~7 days) if the code doesn't have a checkpointing mechanism or if it's not capable to use 3rd-party C&R software ([SCR](https://computation.llnl.gov/projects/scalable-checkpoint-restart-for-mpi), [DMTCP](http://dmtcp.sourceforge.net/), etc.).
 
-In addition to the resilience benefits, the scheduler could take C&R as job preemption mechanism, allowing to migrate preempted jobs to some other resources.
+In addition to the resilience benefits, the scheduler could take C&R as a job preemption mechanism, allowing it to migrate preempted jobs to some other resources.
 
-In addition to the mitigation of cluster monopolization, this could potentially minimise job scattering and achieve this way reduce the latency overhead on the MPI jobs. Having said that, C&R is a very expensive operation because it usually involves moving large datasets in the cluster file system. For that reason, the scheduler should be configured in order to reduce excessive use of this mechanism.
+In addition to the mitigation of cluster monopolization, this could potentially minimise job scattering and consequently reduce the latency overhead on MPI jobs. Having said that, C&R is a very expensive operation because it usually involves moving large datasets in the cluster file system. For that reason, the scheduler should be configured in order to reduce excessive use of this mechanism.
 
-Note that, in order to integrate C&R capabilities, a filesystem designed for this purpose is required (high bandwidth and low metadata usage).
+Note that in order to integrate C&R capabilities, a filesystem designed for this purpose is required (high bandwidth and low metadata usage).
+
 
 An ideal scenario should be able to take advantage of backfilling and a combination of job preemption based on job suspension and also job checkpointing and restart.
 
 ### partition limits, priorities, and preemption mechanisms
 
-The following partition schema meets the 90% of the common requirements. If you don't have clarity about your user requirements, the following suggested configuration will give you a good starting point:
+The following partition schema meets 90% of the most common requirements. If you don't have clarity about your user requirements, the following suggested configuration will give you a good starting point:
 
 | Partition | Nodes | Walltime Limit | Preemption Mechanism | Priority |
 | --------- | ----- | -------------- | -------------------- | -------- |
@@ -55,13 +56,13 @@ The following partition schema meets the 90% of the common requirements. If you 
 | requeue   | all   | 168h           | requeue              | 25       |
 | ondemand  | all   | none           | none                 | 10       |
 
-* The high, medium and low partition names refers to the priority (urgency). And this priority is defined based on the walltime limit. The more walltime, the less priority.
+* The high, medium and low partition names refer to the priority (urgency). And this priority is defined based on the walltime limit. The higher the walltime, the lower the priority.
 * The high partition is the only partition able to preempt other preemptable partitions, low and requeue, by using job suspension and job requeue respectively. 
 * The requeue partition targets those applications that are capable to generate a checkpoint and then restart from last cycle.
 * OnDemand partition is on hold by default. The main purpose of this partition is to route jobs requesting a lot of resources or very uneven allocation (large memory but low core count).
-* If you want to prevent medium jobs to suspend low and requeue partition jobs, you can define the same priority of low and requeue partition also in the medium partition (i.e. 25).
-* PriorityTier, allows defining a suspension priority. Unfortunately, partition's priority tier takes precedence over a job's priority.
-* Consider to setup one of the following options in SchedulerParameters: 
+* If you want to prevent medium jobs suspending low and requeue partition jobs, you can define the same priority for low and requeue partition in the medium partition (i.e. 25).
+* PriorityTier, allows defining a suspension priority. Unfortunately, a partition's priority tier takes precedence over a job's priority.
+* Consider setting up one of the following options in SchedulerParameters: 
   * preempt_strict_order: attempts to preempt only the lowest priority jobs.
   * preempt_youngest_first: attempts to preempt younger jobs over older.
 
@@ -74,7 +75,6 @@ PreemptType=preempt/partition_prio
 PreemptMode=suspend,gang
 ```
 
-
 Update the partitions.conf as follow:
 ```
 PartitionName=DEFAULT   Nodes=hsw[001-512],skl[001-512],knl[0001-1024]  Default=YES State=UP OverSubscribe=FORCE:1
@@ -85,9 +85,9 @@ PartitionName=requeue   MaxTime=168:00:00 Priority=25  PreemptMode=requeue     G
 PartitionName=ondemand  MaxTime=UNLIMITED Priority=10  PreemptMode=off
 ```
 
-In this example, since medium, low and requeue have the same priority, only "high" partition will be able to suspend jobs in those partitions. Medium partition jobs will be unable to suspend any job.
+In this example, since medium, low and requeue have the same priority, only the "high" partition will be able to suspend jobs in those partitions. Medium partition jobs will be unable to suspend any job.
 
-In order to avoid to expose the requeue partition by default to all the users, you can export the following variable in the user environment. Otherwise, you can also consider developing a submit plugin to route the jobs requesting "requeue" (```SBATCH --requeue```).
+In order to avoid exposing the requeue partition by default to all users, you can export the following variable in the user environment. Otherwise, you can also consider developing a submission plugin to route the jobs requesting "requeue" (```SBATCH --requeue```).
 
 Include the following line in /etc/profile.d/slurm.sh
 ```
@@ -101,7 +101,7 @@ systemctl restart slurmctld
 systemctl restart slurmd
 ```
 
-Submit long-term job as user01 user (low priority partition):
+Submit a long-term job as user user01 (low priority partition):
 
 ```
 sbatch -N 10 -n 5000 -t 25:00:00 -C skl --wrap="srun -n 1 sleep 120"
@@ -128,11 +128,11 @@ sbatch --nodelist=skl[011-020] -N 10 -n 400 -t 00:05:00 -C skl --wrap="srun -n 1
 
 The fairsharing mechanism will regulate the priority of the jobs based on who has used more or fewer resources after each cycle. While short-term jobs are nicely handled by backfilling and fair sharing priority; small and long-term jobs can dominate the cluster and lock down the resources for other users for a very long period of time. In order to mitigate this risk, you can implement job preemption as detailed above. 
 
-In addition to that, HPCNow! suggest considering to setup upper limits per user and/or group accounts in order to restrict the resources available at any given time in the long-term jobs. In this scenario (partition based preemption), QoS must be associated with the partitions with Partition QOS (or AllowQos + custom plugin which is not covered in this hands-on).
+In addition to that, HPCNow! suggests establishing upper limits for each user and/or group account in order to restrict the resources available at any given time for long-term jobs. In this scenario (partition based preemption), QoS must be associated with the partitions with Partition QOS (or AllowQos + custom plugin which is not covered in this hands-on).
 
 Partition QoS allows defining the limits that a traditional definition of a partition is not able to do. All the nodes can be assigned to a partition and then in the Partition's QOS limit the number of resources available for that partition (i.e. GrpCPUs or GrpNodes).
 
-By adopting partition QoS the partition priority can be used to define the preemption priority without impact in the overall job priority (weight 0) and the partition QoS associated to each partition can define the priority based on the walltime/urgency.
+By adopting partition QoS the partition priority can be used to define the preemption priority without impacting the overall job priority (weight 0) and the partition QoS associated to each partition can define the priority based on the walltime/urgency.
 
 ```
 sacctmgr -i add qos high priority=100
@@ -190,17 +190,16 @@ You should be able to see something like this:
 
 ### Job scattering mitigation strategies
 
-The following strategies will give more opportunities to allocate bigger jobs (OpenMP and MPI) in a smaller number of compute nodes, which means less waiting time for large jobs and also less impact in the MPI latency.
+The following strategies will provide more opportunities for allocating bigger jobs (OpenMP and MPI) in a smaller number of compute nodes which will reduce waiting times for large jobs and the impact of MPI latency.
 
 * Fill up the nodes in order (default)
-* Fill up first the nodes with highest load average (avoid CR_LLN options)
-* Use CPU but also the memory as consumable resource (SelectTypeParameters=CR_CPU_Memory)
-* Allow users with job arrays to bundle several jobs into a single one using complete nodes (consider to expose [the Launcher](https://www.tacc.utexas.edu/research-development/tacc-software/the-launcher) or similar tools to your users)
-
+* Fill up the nodes with highest load average first (avoid CR_LLN options)
+* Use CPU but also the memory as a consumable resource (SelectTypeParameters=CR_CPU_Memory)
+* Allow users with job arrays to bundle several jobs into a single one using complete nodes (consider exposing [the Launcher](https://www.tacc.utexas.edu/research-development/tacc-software/the-launcher) or similar tools to your users)
 
 ### Avoid cluster hogging
 Cluster hogging is usually generated by jobs requesting an uneven resource allocation. For example, jobs requesting a lot of memory (maybe the 90% or the available memory in the node) but only few CPUs. In this scenario, most of the CPUs will be virtually available but not many jobs will have opportunities to run in the shared resources due to the limited amount of memory available.
 
-HPCNow! strongly suggest reviewing the mismatch between the resources requested versus used, especially in terms of CPUs and memory.
+HPCNow! strongly suggests reviewing the mismatch between the resources requested versus used, especially in terms of CPUs and memory.
 
-In order to avoid those situations, HPCNow! suggest to route the jobs requesting four times the default ratio of memory/core to a special partition (ondemand), which could be on hold by default or allow to run a small number of jobs at the same time. If you have large memory nodes, you could also consider routing those jobs to those nodes (custom submit plugin is required).
+In order to avoid those situations, HPCNow! suggests routing jobs requesting four times the default ratio of memory/core to a special partition (ondemand), which could be on hold by default or allowed to run a small number of jobs at a time. If you have large memory nodes, you could also consider routing those jobs to those nodes (custom submission plugin is required).

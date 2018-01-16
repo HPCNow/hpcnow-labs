@@ -38,6 +38,7 @@ In order to enable this plugin, we will set up the following parameter in slurm.
 ```
 ProctrackType=proctrack/cgroup
 ```
+
 <!-- The custom task cgroups hack does not work anymore. Code needs to be updated. - Jordi 2018/01/16
 ### task/cgroup plugin
 

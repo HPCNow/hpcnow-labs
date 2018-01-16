@@ -35,6 +35,7 @@ SrunProlog=/etc/slurm/prolog/srun.sh
 ```
 
 ## Setup Prolog
+
 Create three shell scripts with execution permissions:
 * /etc/slurm/prolog/job.sh
 * /etc/slurm/prolog/task.sh

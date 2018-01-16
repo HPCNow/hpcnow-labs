@@ -8,19 +8,19 @@ with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 -->
-[ *OPTIONAL* ] This hands-on will teach you how to build and install Slurm packages for production. The packages generated during this hands-on are not going to be used in training environment to conduct the next sections of the training. This hands-on will focus on CentOS (RHEL) and SuSE Leap (SLES).
+[ *OPTIONAL* ] This hands-on will teach you how to build and install Slurm packages for production. The packages generated during this hands-on are going to be used in a training environment to conduct the following training sections. This hands-on will focus on CentOS (RHEL) and SuSE Leap (SLES).
 
 The process of building the Slurm packages can be simplified by taking advantage of the HPCNow! repositories: 
 * http://snow.hpcnow.com/apt/ (Debian and Ubuntu based distributions) 
 * http://snow.hpcnow.com/rpm/ (Red Hat and SuSE based distributions)
 
-The installation of Slurm database and controller servers can be automated by taking advantage of the [sNow! roles](https://hpcnow.github.io/snow-documentation/mydoc_available_roles.html).
+The installation of the Slurm database and controller servers can be automated by taking advantage of the [sNow! roles](https://hpcnow.github.io/snow-documentation/mydoc_available_roles.html).
 
 *Estimated time: 60 minutes*
 
 ## Requirements
 * NFS server or cluster file system
-* two slurm servers with NFS or cluster file system client
+* Two Slurm servers with NFS or cluster file system client
 * Laptop with SSH client.
 
 
@@ -84,11 +84,11 @@ LENGTH:           0
 ```
 
 ## Dependencies
-In order to build the Slurm packages, some development packages are required. The following instructions will guide you to install all the missing dependencies required to build the Slurm with most common functionalities.
+In order to build the Slurm packages, some development packages are required. The following instructions will guide you to install all the missing dependencies required to build Slurm with most common functionalities.
 
 ### SuSE based distributions
 
-For SuSE distributions, you will need the two SLES SDK DVD in your repository. In order to have HDF5 support for Slurm profiling, you will also need to add the following repository:
+For SuSE distributions, you will need the two SLES SDK DVDs in your repository. In order to have HDF5 support for Slurm profiling, you will also need to add the following repository:
 
 ```
 zypper ar http://download.opensuse.org/repositories/science/SLE_11_SP3/science.repo
@@ -121,7 +121,7 @@ yum install hdf5 hdf5-devel -y
 yum install perl-DBI perl-Switch -y
 ```
 
-Some distributions may require to disable SELINUX and to include firewall rules to enable communication with the slurmdbd and slurmctld nodes.
+Some distributions may require you to disable SELINUX and to include firewall rules enabling communication with the slurmdbd and slurmctld nodes.
 
 Check SELINUX status with:
 
@@ -139,7 +139,7 @@ iptables -L
 
 ## Build Slurm packages
 
-Download the last stable release for slurm and build the RPMs on the slurm-001
+Download the latest stable release for slurm and build the RPMs on the slurm-001
 
 ```
 wget https://download.schedmd.com/slurm/slurm-17.11.2.tar.bz2 
@@ -147,7 +147,7 @@ rpmbuild -ta --with lua --with pam \
           slurm-17.11.2.tar.bz2  | tee rpmbuild-slurm-17.11.2.log
 ```
 
-Note: SuSE based distributions require to remove munge-libs from BuildRequires in the slurm.spec
+Note: SuSE based distributions require you to remove munge-libs from BuildRequires in the slurm.spec
 ```
 diff -ru slurm-17.02.7/slurm.spec slurm-17.02.7.bkp/slurm.spec
 --- slurm-17.02.7/slurm.spec	2017-08-14 17:48:43.000000000 +0000
@@ -187,8 +187,8 @@ Preparing...                ########################################### [100%]
   14:slurm-sjstat           ########################################### [100%]
 ```
 
-Some distributions require to create the SlurmUser prior to starting Slurm and must exist on all nodes of the cluster with the same ID and GID. 
-In order to enable full support for cgroups, SlurmUser must be root user, as required by slurmd. SlurmCTLD and SlurmDBD require the same SlurmUser for consistency.
+Some distributions require you to create the SlurmUser prior to starting Slurm and this user must exist on all cluster nodes with the same ID and GID. 
+In order to enable full support for cgroups, the SlurmUser must be a root user, as required by slurmd. SlurmCTLD and SlurmDBD require the same SlurmUser for consistency.
 
 
 ```
@@ -211,13 +211,13 @@ chown -R slurm:slurm /var/log/slurm
 
 A backup controller should be defined in order to take over for the primary slurmctld whenever it fails. The backup controller is defined by BackupController parameter in the slurm.conf.
 
-The backup controller should be hosted on a different hardware. However, both hosts should mount a common file system defined by StateSaveLocation in the slurm.conf.
+The backup controller should be hosted on different hardware. However, both hosts should mount a common file system as defined by StateSaveLocation in the slurm.conf.
 
 By default, the backup controller detects when the primary fails and takes over for it. When the primary returns to service, it notifies the backup. At that point, the backup saves state and returns to backup mode.
 
 The SlurmDBD server must be installed on a different server(s), otherwise, the native high availability will not work.
 
-The Slurm provides native high availability for the SlurmCTLD but not for SlurmDBD. Clusters managed by sNow! can also take advantage of additional high availability layers, achieving this way, the resilience required for a mission-critical environment. More information [here](https://hpcnow.github.io/snow-documentation/mydoc_available_roles.html#slurmdbd).
+Slurm provides native high availability for the SlurmCTLD but not for SlurmDBD. Clusters managed by sNow! can also take advantage of additional high availability layers, thus achieving the resilience required for a mission-critical environment. More information [here](https://hpcnow.github.io/snow-documentation/mydoc_available_roles.html#slurmdbd).
 
 ## Setup SlurmDBD and MySQL
 
@@ -240,7 +240,7 @@ grant all on slurm_acct_db.* to slurm@'slurm01' identified by 'PASSWORD_TO_CHANG
 grant all on slurm_acct_db.* to slurm@'slurm02' identified by 'PASSWORD_TO_CHANGE';
 ```
 
-Update the slurmdbd.conf file with the MySQL credentials and initiate the slurmdbd service in the slurmdb server:
+Update the slurmdbd.conf file with the MySQL credentials and start the slurmdbd service on the slurmdb server:
 
 ```
 systemctl start slurmdbd
