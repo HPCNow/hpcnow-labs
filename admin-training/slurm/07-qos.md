@@ -1,4 +1,4 @@
-# Hands-On 03: QoS
+# Hands-On 07: QoS
 <!--
 Copyright (C) 2017 Jordi Blasco
 Permission is granted to copy, distribute and/or modify this document

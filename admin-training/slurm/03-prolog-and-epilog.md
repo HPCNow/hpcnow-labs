@@ -1,4 +1,4 @@
-# Hands-On 04: Prolog and Epilog
+# Hands-On 03: Prolog and Epilog
 <!--
 Copyright (C) 2017 Jordi Blasco
 Permission is granted to copy, distribute and/or modify this document
@@ -21,8 +21,21 @@ Slurm supports a multitude of prolog and epilog programs. Note that for security
 * Virtual Slurm environment created in the hands-on session 01
 * Previous hands-on completed
 
+## Prolog and Epilog
 
-## Prolog
+Open ```/etc/slurm/slum.conf``` and setup the following parameters:
+
+```
+Epilog=/etc/slurm/prolog/job.sh
+Prolog=/etc/slurm/prolog/job.sh
+TaskEpilog=/etc/slurm/prolog/task.sh
+TaskProlog=/etc/slurm/prolog/task.sh
+SrunEpilog=/etc/slurm/epilog/srun.sh
+SrunProlog=/etc/slurm/prolog/srun.sh
+```
+
+## Setup Prolog
+
 Create three shell scripts with execution permissions:
 * /etc/slurm/prolog/job.sh
 * /etc/slurm/prolog/task.sh
@@ -87,7 +100,7 @@ else
 fi
 ```
 
-## Epilog
+## Setup Epilog
 
 ### Removing temporary directories
 Create a job epilog to remove the temporary folders created for the job (/etc/slurm/epilog/job.sh)

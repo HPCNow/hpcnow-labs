@@ -1,4 +1,4 @@
-# Hands-On 08: User Management
+# Hands-On 06: User Management
 <!--
 Copyright (C) 2017 Jordi Blasco
 Permission is granted to copy, distribute and/or modify this document

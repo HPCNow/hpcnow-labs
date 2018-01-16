@@ -1,4 +1,4 @@
-# Hands-On 05: Cgroups and GRES
+# Hands-On 04: Cgroups and GRES
 <!--
 Copyright (C) 2017 Jordi Blasco
 Permission is granted to copy, distribute and/or modify this document
@@ -39,6 +39,7 @@ In order to enable this plugin, we will set up the following parameter in slurm.
 ProctrackType=proctrack/cgroup
 ```
 
+<!-- The custom task cgroups hack does not work anymore. Code needs to be updated. - Jordi 2018/01/16
 ### task/cgroup plugin
 
 The task/cgroup plugin is used for task management which enables the following key features:
@@ -82,6 +83,7 @@ ConstrainRAMSpace=yes
 ConstrainSwapSpace=yes
 TaskAffinity=yes
 ```
+-->
 
 ### jobacct_gather/cgroup plugin
 
@@ -90,7 +92,7 @@ The jobacct_gather/cgroup plugin is used for the collection of accounting statis
 In order to enable this plugin, we will set up the following parameter in slurm.conf:
 
 ```
-JobacctGatherType=jobacct_gather/cgroup
+JobAcctGatherType=jobacct_gather/cgroup
 ```
 
 ## Generic Resource Scheduling
@@ -113,7 +115,7 @@ GresTypes=bandwidth
 Setup the nodes.conf file to specify the number of resources available in each node
 
 ```
-NodeName=hsw[001-512] Gres=bandwidth:4G
+NodeName=hsw[001-512] Gres=bandwidth:no_consume:4G
 ```
 
 Each compute node with generic resources must also contain a gres.conf file describing which resources are available on the node, their count, associated device files and cores which should be used with those resources. The configuration parameters available are:
