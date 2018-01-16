@@ -112,7 +112,7 @@ Include bandwidth GRES in GresTypes parameter in the slurm.conf file:
 GresTypes=bandwidth
 ```
 
-Setup the nodes.conf file to specify the number of resources available in each node
+Setup the nodes.conf file to extend the nodes definition with ```Gres=bandwidth:no_consume:4G```:
 
 ```
 NodeName=hsw[001-512]      NodeAddr=slurm-simulator NodeHostName=slurm-simulator RealMemory=258048  Sockets=2 CoresPerSocket=12  ThreadsPerCore=1 State=UNKNOWN Feature=hsw Gres=bandwidth:no_consume:4G
