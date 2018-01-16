@@ -116,11 +116,11 @@ You can manage users using similar syntax but the options exposed for user manag
 In this hands-on we will add the following users:
 
 ```
-sacctmgr -i add user user07 Account=git
+sacctmgr -i add user user01,user02,user03 Account=git
 sacctmgr -i add user user04 Account=arcane
 sacctmgr -i add user user05 Account=frost
 sacctmgr -i add user user06 Account=fire
-sacctmgr -i add user user08 Account=fire,arcane DefaultAccount=arcane
+sacctmgr -i add user user07,user08,user09,user10, Account=fire,arcane DefaultAccount=arcane
 ```
 
 You can modify existing accounts with SQL-like options, using keywords like ```where``` and ```set```:
