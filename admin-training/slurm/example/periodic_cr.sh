@@ -4,6 +4,7 @@
 #SBATCH --mem-per-cpu=200
 #SBATCH --cpus-per-task=1
 #SBATCH --open-mode=append
+#SBATCH --requeue
 #SBATCH -p requeue
 #SBATCH --time-min=00:00:30 # Minimum time to perform the compute of chekpointable cycle + time to dump the information to the shared filesystem
 
