@@ -20,7 +20,7 @@ In this hands-on, you will learn how to setup advanced scheduling strategies, al
 ### Preemption
 
 Job preemption allows stopping one or more "low-priority" jobs to let a "high-priority" job run. Different job preemption mechanisms can be implemented: job suspension, job checkpointing and restart and job cancel.
-With job preemption, the *cluster domination by long-term jobs can be mitigated*. By adopting this strategy, you should be able to schedule really large (and high-priority) jobs quite quickly by suspending other low priority jobs.
+With job preemption, the **cluster domination by long-term jobs can be mitigated**. By adopting this strategy, you should be able to schedule really large (and high-priority) jobs quite quickly by suspending other low priority jobs.
 
 In Slurm, job preemption can be defined by relative priority between partitions or QoS. Even though QoS provides more options, due to the time constraints of this hands-on session, the job preemption will be handled by partition priority. If you need more flexibility, you should consider implementing QoS and potentially developing a submission plugin for partition or QoS routing.
 
@@ -37,14 +37,13 @@ Several HPC facilities see the Checkpointing & Restart (C&R) as a "resilience" m
 
 In addition to the resilience benefits, the scheduler could take C&R as a job preemption mechanism, allowing it to migrate preempted jobs to some other resources.
 
-In addition to the mitigation of cluster monopolization, this could potentially minimise job scattering and consequently reduce the latency overhead on MPI jobs. Having said that, C&R is a very expensive operation because it usually involves moving large datasets in the cluster file system. For that reason, the scheduler should be configured in order to reduce excessive use of this mechanism.
+In addition to the mitigation of cluster domination, this could potentially **minimise job scattering** and consequently reduce the latency overhead on MPI jobs. Having said that, C&R is a very expensive operation because it usually involves moving large datasets in the cluster file system. For that reason, the scheduler should be configured in order to reduce excessive use of this mechanism.
 
 Note that in order to integrate C&R capabilities, a filesystem designed for this purpose is required (high bandwidth and low metadata usage).
 
-
 An ideal scenario should be able to take advantage of backfilling and a combination of job preemption based on job suspension and also job checkpointing and restart.
 
-### partition limits, priorities, and preemption mechanisms
+### Partition limits, priorities, and preemption mechanisms
 
 The following partition schema meets 90% of the most common requirements. If you don't have clarity about your user requirements, the following suggested configuration will give you a good starting point:
 
@@ -126,9 +125,9 @@ sbatch --nodelist=skl[011-020] -N 10 -n 400 -t 00:05:00 -C skl --wrap="srun -n 1
 
 ### Prevent cluster domination
 
-The fairsharing mechanism will regulate the priority of the jobs based on who has used more or fewer resources after each cycle. While short-term jobs are nicely handled by backfilling and fair sharing priority; small and long-term jobs can dominate the cluster and lock down the resources for other users for a very long period of time. In order to mitigate this risk, you can implement job preemption as detailed above. 
+The fairsharing mechanism will regulate the priority of the jobs based on who has used more or fewer resources after each cycle. While short-term jobs are nicely handled by backfilling and fair sharing priority; small and **long-term jobs can dominate the cluster** and lock down the resources for other users for a very long period of time. In order to mitigate this risk, you can implement job preemption as detailed above. 
 
-In addition to that, HPCNow! suggests establishing upper limits for each user and/or group account in order to restrict the resources available at any given time for long-term jobs. In this scenario (partition based preemption), QoS must be associated with the partitions with Partition QOS (or AllowQos + custom plugin which is not covered in this hands-on).
+In addition to that, HPCNow! suggests establishing **upper limits for each user and/or group account in order to restrict the resources available at any given time for long-term jobs**. In this scenario (partition based preemption), QoS must be associated with the partitions with Partition QOS (or AllowQos + custom plugin which is not covered in this hands-on).
 
 Partition QoS allows defining the limits that a traditional definition of a partition is not able to do. All the nodes can be assigned to a partition and then in the Partition's QOS limit the number of resources available for that partition (i.e. GrpCPUs or GrpNodes).
 
@@ -190,7 +189,7 @@ You should be able to see something like this:
 
 ### Job scattering mitigation strategies
 
-The following strategies will provide more opportunities for allocating bigger jobs (OpenMP and MPI) in a smaller number of compute nodes which will reduce waiting times for large jobs and the impact of MPI latency.
+The following strategies will provide more opportunities for allocating bigger jobs (OpenMP and MPI) in a smaller number of compute nodes which will **reduce waiting times for large jobs and the impact of MPI latency**.
 
 * Fill up the nodes in order (default)
 * Fill up the nodes with highest load average first (avoid CR_LLN options)
@@ -198,7 +197,8 @@ The following strategies will provide more opportunities for allocating bigger j
 * Allow users with job arrays to bundle several jobs into a single one using complete nodes (consider exposing [the Launcher](https://www.tacc.utexas.edu/research-development/tacc-software/the-launcher) or similar tools to your users)
 
 ### Avoid cluster hogging
-Cluster hogging is usually generated by jobs requesting an uneven resource allocation. For example, jobs requesting a lot of memory (maybe the 90% or the available memory in the node) but only few CPUs. In this scenario, most of the CPUs will be virtually available but not many jobs will have opportunities to run in the shared resources due to the limited amount of memory available.
+
+Cluster hogging is usually generated by **jobs requesting an uneven resource allocation**. For example, jobs requesting a lot of memory (maybe the 90% or the available memory in the node) but only few CPUs. In this scenario, most of the CPUs will be virtually available but not many jobs will have opportunities to run in the shared resources due to the limited amount of memory available.
 
 HPCNow! strongly suggests reviewing the mismatch between the resources requested versus used, especially in terms of CPUs and memory.
 
