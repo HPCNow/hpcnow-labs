@@ -112,11 +112,11 @@ Submit a short-term job (high priority partition) requiring one of the nodes all
 sbatch --nodelist=skl[001-010] -N 10 -n 400 -t 00:05:00 -C skl --wrap="sun -n 1 sleep 120"
 ```
 
-Submit a job using application-level checkpointing through requeue partition with user user01. The first example will expect a Signal in order to generate the checkpoint. The second one will do it periodically. 
+Submit a job using application-level checkpointing through requeue partition with user user01. The submit script [periodic_cr.sh](example/periodic_cr.sh) available in the example folder will generate the checkpoint file every 5 seconds. 
 
+Download this file and submit the job with the following command:
 ```
-sbatch ~/src/Fortran/sigex_cr.sh
-sbatch ~/src/Fortran/periodic_cr.sh
+sbatch periodic_cr.sh
 ```
 
 Once the job is running, submit another one requiring one of the nodes allocated for the previous job in order to force preemption.
