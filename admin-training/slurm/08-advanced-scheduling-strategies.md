@@ -103,24 +103,29 @@ systemctl restart slurmd
 Submit a long-term job as user user01 (low priority partition):
 
 ```
-sbatch -N 10 -n 5000 -t 25:00:00 -C skl --wrap="srun -n 1 sleep 120"
+sbatch -n 5000 -t 25:00:00 -C skl --wrap="srun -n 1 sleep 120"
 ```
 
 Submit a short-term job (high priority partition) requiring one of the nodes allocated for the previous job. i.e.: --nodelist=skl[001-010] in order to force to suspend the low priority job.
 ```
-sbatch --nodelist=skl[001-010] -N 10 -n 400 -t 00:05:00 -C skl --wrap="sun -n 1 sleep 120"
+sbatch --nodelist=skl[001-010] -N 10 -n 400 -t 00:01:00 -C skl --wrap="srun -n 1 sleep 60"
 ```
 
 Submit a job using application-level checkpointing through requeue partition with user user01. The submit script [periodic_cr.sh](example/periodic_cr.sh) available in the example folder will generate the checkpoint file every 5 seconds. 
 
 Download this file and submit the job with the following command:
 ```
-sbatch periodic_cr.sh
+sbatch --nodelist=hsw001 -n 24 -N 1 periodic_cr.sh
 ```
 
-Once the job is running, submit another one requiring one of the nodes allocated for the previous job in order to force preemption.
+Once the job is running, submit another one requiring the same node allocated for the previous job in order to force preemption.
 ```
-sbatch --nodelist=skl[011-020] -N 10 -n 400 -t 00:05:00 -C skl --wrap="srun -n 1 sleep 120"
+sbatch --nodelist=hsw001 -n 24 -N 1 -t 00:05:00 --wrap="srun -n 1 sleep 300"
+```
+
+Wait for two or three minutes and the requeued job will be migrated to another compute node.
+```
+squeue -i 2
 ```
 
 ### Prevent cluster domination
@@ -173,10 +178,10 @@ systemctl restart slurmctld
 systemctl restart slurmd
 ```
 
-Submit a job array in order to hit the QoS limits implemented with partition QoS:
+Submit a job array in order to hit the QoS limits implemented with low partition QoS:
 
 ```
-sbatch -n 500 -t 00:05:00 --array=1-20 -C skl --wrap="srun -n 1 sleep 120"
+sbatch -n 500 -t 24:05:00 --array=1-20 -C skl --wrap="srun -n 1 sleep 120"
 ```
 
 You should be able to see something like this:
