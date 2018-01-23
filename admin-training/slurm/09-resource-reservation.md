@@ -50,7 +50,7 @@ The reservation behavior can be modeled by optional flags (see advanced resource
 
 ```
 scontrol create reservation ReservationName=test01 \
-         StartTime=2018-01-19T10:00:00 Duration=00:30:00 \
+         StartTime=2020-01-19T10:00:00 Duration=00:30:00 \
          Users=user07,user04 NodeCnt=256
 ```
 
@@ -60,7 +60,7 @@ The command ```scontrol show res```, lists the reservations defined in the syste
 
 ```
 scontrol show res
-ReservationName=test01 StartTime=2018-01-19T10:00:00 EndTime=2018-01-19T10:30:00 Duration=00:30:00
+ReservationName=test01 StartTime=2020-01-19T10:00:00 EndTime=2020-01-19T10:30:00 Duration=00:30:00
    Nodes=hsw[001-256] NodeCnt=256 CoreCnt=6144 Features=(null) PartitionName=ondemand Flags=
    TRES=cpu=6144
    Users=user07,user04 Accounts=(null) Licenses=(null) State=INACTIVE BurstBuffer=(null) Watts=n/a
@@ -101,7 +101,7 @@ Reservations are also useful to define scheduled outages.
 
 ```
 scontrol create reservation ReservationName=outage_01 \
-         starttime=2018-01-19T12:00:00 duration=02:00:00 \
+         starttime=2020-01-19T12:00:00 duration=02:00:00 \
          user=root flags=MAINT,IGNORE_JOBS nodes=ALL
 ```
 
@@ -118,7 +118,7 @@ The ```LICENSE_ONLY``` flag is used to indicate that the reservation will preven
 
 ```
 scontrol create reservation ReservationName=fluent_user07_01 \
-         starttime=2018-01-20T06:00:00 duration=120 \
+         starttime=2020-01-20T06:00:00 duration=120 \
          Users=user07 flags=LICENSE_ONLY licenses=fluent:1000
 ```
 
@@ -128,7 +128,7 @@ The ```DAILY``` flag is used to define periodic reservations occurring in a dail
 
 ```
 scontrol create reservation ReservationName=periodic_01 \
-         starttime=2018-01-20T08:00:00 duration=30 \
+         starttime=2020-01-20T08:00:00 duration=30 \
          Users=user07,user08 flags=DAILY nodecnt=128
 ```
 
@@ -150,7 +150,7 @@ When a reservation ends the jobs requesting that reservation will be put into a 
 
 ```
 scontrol create reservation ReservationName=purged_01 \
-         starttime=2018-01-20T08:00:00 duration=30 \
+         starttime=2020-01-20T08:00:00 duration=30 \
          Users=user08 flags=NO_HOLD_JOBS_AFTER_END nodecnt=128
 ```
 
@@ -174,7 +174,7 @@ The ```REPLACE``` reservation flag allows creating a reservation for which nodes
 
 ```
 scontrol create reservation ReservationName=replace_test01 \
-         StartTime=2018-01-21T10:00:00 Duration=00:30:00 \
+         StartTime=2020-01-21T10:00:00 Duration=00:30:00 \
          Users=user07,user08 NodeCnt=256 flags=REPLACE
 ```
 
@@ -185,6 +185,6 @@ The ```PURGE_COMP``` reservation flag allows purging the reservation automatical
 
 ```
 scontrol create reservation ReservationName=purge_test01 \
-         StartTime=2018-01-21T10:00:00 Duration=00:30:00 \
+         StartTime=2020-01-21T10:00:00 Duration=00:30:00 \
          Users=user07,user08 NodeCnt=256 flags=PURGE_COMP
 ```
