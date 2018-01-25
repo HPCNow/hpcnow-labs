@@ -51,8 +51,8 @@ The following partition schema meets 90% of the most common requirements. If you
 | --------- | ----- | -------------- | -------------------- | -------- |
 | high      | all   | 4h             | none                 | 50       |
 | medium    | all   | 24h            | none                 | 40       |
-| low       | all   | 168h           | suspension           | 25       |
-| requeue   | all   | 168h           | requeue              | 25       |
+| low       | all   | 168h           | suspension           | 30       |
+| requeue   | all   | 168h           | requeue              | 20       |
 | ondemand  | all   | none           | none                 | 10       |
 
 * The high, medium and low partition names refer to the priority (urgency). And this priority is defined based on the walltime limit. The higher the walltime, the lower the priority.
@@ -115,7 +115,7 @@ Submit a job using application-level checkpointing through requeue partition wit
 
 Download this file and submit the job with the following command:
 ```
-sbatch --nodelist=hsw001 -n 24 -N 1 periodic_cr.sh
+sbatch --nodelist=hsw001 -n 24 -N 1 -p requeue periodic_cr.sh
 ```
 
 Once the job is running, submit another one requiring the same node allocated for the previous job in order to force preemption.
@@ -139,10 +139,10 @@ Partition QoS allows defining the limits that a traditional definition of a part
 By adopting partition QoS the partition priority can be used to define the preemption priority without impacting the overall job priority (weight 0) and the partition QoS associated to each partition can define the priority based on the walltime/urgency.
 
 ```
-sacctmgr -i add qos high priority=100
-sacctmgr -i add qos medium priority=80
-sacctmgr -i add qos low priority=40 GrpCPUs=4096 flags=DenyOnLimit
-sacctmgr -i add qos requeue priority=60
+sacctmgr -i add qos high priority=50
+sacctmgr -i add qos medium priority=40
+sacctmgr -i add qos low priority=30 GrpCPUs=4096 flags=DenyOnLimit
+sacctmgr -i add qos requeue priority=20
 sacctmgr -i add qos ondemand priority=10 GrpCPUs=2048 flags=DenyOnLimit
 ```
 
@@ -152,10 +152,10 @@ sacctmgr show qos format=name,priority,Flags,GrpTRES
       Name   Priority                Flags       GrpTRES
 ---------- ---------- -------------------- -------------
     normal          0
-      high        100
-    medium         80
-       low         40          DenyOnLimit      cpu=4096
-   requeue         60
+      high         50
+    medium         40
+       low         30          DenyOnLimit      cpu=4096
+   requeue         20
   ondemand         10          DenyOnLimit      cpu=2048
 ```
 
