@@ -119,7 +119,7 @@ systemctl restart nfs-kernel-server
 ## Domains Deployment
 Each domain usually takes between one and two minutes to be deployed and booted, although this will mostly depend on your system's IO performance. More detailed information available (here)[https://hpcnow.github.io/snow-documentation/mydoc_domain_deploy.html].
 ### Download Domain Template
-sNow! relies on pre-built domain images which are used as a template in role deployment. This allows accelerating the deployment of. It is good practice to update this image before creating any new service in order to fix potential bugs.
+sNow! relies on pre-built domain images which are used as a template for role deployment. This allows accelerating the deployment of. It is good practice to update this image before creating any new service in order to fix potential bugs.
 
 The following command looks for a new update in the public repository, and if a new update is available, it will download the new image. The size of the image is around 250MB, so expect some delay here.
 ```
@@ -147,7 +147,7 @@ Once you have deployed all domains, you can boot them all by running the followi
 ```
 snow boot domains
 ```
-Otherwise, if you want to boot an specific domain, you can run the following command:
+Otherwise, if you want to boot a specific domain, you can run the following command:
 ```
 snow boot <domain_name>
 ```
@@ -158,17 +158,17 @@ snow console <domain_name>
 ```
 In order exit from a console session, use ```<CTRL> ]```.
 ## Hardware Stress on Compute Nodes - under development
-sNow! installs by default a small OS image which allows to stress the compute nodes to detect potential hardware issues early.
-Consider to run those tests while you are deploying the first node or customising the deployment templates. This image can also be used to generate the mac addresses database (see next section).
+sNow! installs by default a small OS image which allows stressing the compute nodes to detect potential hardware issues early.
+Consider running those tests while you are deploying the first node or customising the deployment templates. This image can also be used to generate the mac addresses database (see next section).
 ```
 snow boot node[001-999] stress-x64
 ```
 ## Mac Addresses Gathering
-Collecting the MAC addresses in a cluster is simple but can be time consuming. This [section](https://hpcnow.github.io/snow-documentation/mydoc_node_how_to_collect_the_mac_addresses.html) explains some tricks to avoid spending too much time doing this.
+Collecting the MAC addresses in a cluster is simple but can be time-consuming. This [section](https://hpcnow.github.io/snow-documentation/mydoc_node_how_to_collect_the_mac_addresses.html) explains some tricks to avoid spending too much time doing this.
 
-The deployment node will track all the DHCP requests each time a node is booted. Booting the nodes in the desired order will fill the dhcp.leases file in the this order. Using the dhcp.leases file you will be able to get all the MAC addresses of your compute nodes which can then be used to assign static IP addresses based on the MAC addresses in the /etc/ethers file. Consider proceeding as follows:
+The deployment node will track all the DHCP requests each time a node is booted. Booting the nodes in the desired order will fill the dhcp.leases file in this order. Using the dhcp.leases file you will be able to get all the MAC addresses of your compute nodes which can then be used to assign static IP addresses based on the MAC addresses in the /etc/ethers file. Consider proceeding as follows:
 1. Boot the first node and measure the time it takes until it makes its PXE request.
-2. Boot the other nodes by giving enough time to avoid a mistake in the order of receiving the DHCP request. Usually 15 to 30 seconds is enough.
+2. Boot the other nodes by giving enough time to avoid a mistake in the order of receiving the DHCP request. Usually, 15 to 30 seconds is enough.
 3. Once you have all the nodes up and running, you can take advantage of the following helper script to generate the static IP assignment in the right order.
 ```
 fishermac /var/lib/misc/dnsmasq.leases > /etc/ethers
@@ -184,7 +184,7 @@ sNow! supports multiple Linux distributions for the deployment for compute nodes
 ```
 snow list templates
 ```
-When setting up a cluster there are actions which only need to be performed once per cluster. In order to do so, sNow! defines a especial role called *golden node* where these actions are to be performed on. In the case of very heterogeneous architectures allocated in the same cluster, these actions may need to be performed once per architecture.
+When setting up a cluster there are actions which only need to be performed once per cluster. In order to do so, sNow! defines an especial role called *golden node* where these actions are to be performed on. In the case of very heterogeneous architectures allocated in the same cluster, these actions may need to be performed once per architecture.
 ## Compute Node Deployment
 If you want to deploy a compute node based on a pre-defined template. You can use the following command (i.e.)
 ```
@@ -194,7 +194,7 @@ Example:
 ```
 snow deploy n001 centos-7.4-default
 ```
-If you wish provisioning the cluster by deploying, replace the n001 with the cluster name or the node range to be deployed.
+If you wish to provision the cluster by deploying, replace the n001 with the cluster name or the node range to be deployed.
 HPCNow! strongly recommends considering diskless image provisioning to accelerate the provisioning of large clusters. The next two steps detail the process of image gathering and cluster image provisioning.
 ## Console Access
 In order to get access to any of the compute nodes’ console, execute the following command:
@@ -204,14 +204,14 @@ snow console <node_name>
 In order exit from a console session, use ```~.```. When connected to an IMPI console, each SSH session captures one ```~``` char. In order to escape from the console session with one ssh server in between, type ```~~.```
 
 ## Compute Node Image Gathering
-In order to generate the first image, a previously deployed system is required. sNow! supports different types of image based provisioning. Consider to explore the [image type](https://hpcnow.github.io/snow-documentation/mydoc_image_overview.html) section to learn more about that.
+In order to generate the first image, a previously deployed system is required. sNow! supports different types of image-based provisioning. Consider exploring the [image type](https://hpcnow.github.io/snow-documentation/mydoc_image_overview.html) section to learn more about that.
 
 The following example instructs sNow! to gather a stateless image:
 ```
 snow clone node n001 centos-7.4-minimal stateless
 ```
 ## Compute Node Image Provisioning
-Finally, for provisioning the cluster using diskless image you only need to execute the following command:
+Finally, for provisioning the cluster using a diskless image you only need to execute the following command:
 ```
 snow boot <cluster_name> <image_name>
 ```
