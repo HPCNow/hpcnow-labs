@@ -21,6 +21,7 @@ As part of the sNow! project, and as part of a community effort, we would like t
 
 | Topic                                                                 | Target Audience       |
 | --------------------------------------------------------------------- | --------------------- |
+| [Overview Demo](00-overview-demo.md)                                  | Beginner              |
 | [Getting access](01-getting-access.md)                                | Beginner              |
 | [Administrator environment](02-administration-environment.md)         | Beginner              |
 | [Setting up sNow!](03-setting-up-snow.md)                             | Beginner              |
