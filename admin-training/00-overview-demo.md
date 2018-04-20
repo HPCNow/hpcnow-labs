@@ -1,23 +1,16 @@
-# Hands-On 01: Getting access
-In this hands-on, we are going to deploy required services to operate a standard High Performance Computing cluster.
+# Hands-On 00: Overview Demo
+In this hands-on, we are going to install a standard High Performance Computing cluster based on a single sNow! server.
 
-*Estimated time : 3 hours*
+*Estimated time : ~3 hours*
 
 ## Requirements
-
-* Cluster account.
-* Laptop with SSH client.
-* sNow! cluster manager already installed
-
-## ToDo
-
-## Prerequisites
 The following notes describe how to install a single sNow! server.
 
 This guide assumes that:
 
 1. You have one server dedicated to sNow! (sNow! server) with Debian 9 installed. More information about how to install Debian OS is available [here](https://hpcnow.github.io/snow-documentation/mydoc_install_os_debian.html)
 2. The sNow! server will also provide access to share file system via NFS (/home and /sNow). Check the [sNow! documentation](https://hpcnow.github.io/snow-documentation) in order to integrate other cluster file systems like BeeGFS, Lustre or IBM Spectrum Scale.
+
 ## Installation
 Access to the sNow! server and execute the following commands as root user:
 ```
@@ -223,3 +216,9 @@ Example:
 snow boot mycluster centos-7.4-minimal
 ```
 ## Modify Single System Image
+The following command provides write access to a chroot environment inside a rootfs image. The prompt provided by this command also shows that the shell session is allocated inside a particular image chroot. 
+
+In order to exit from this environment, type ```exit``` or press ```Ctrl+d```.
+```
+snow chroot centos-7.4-minimal
+```
