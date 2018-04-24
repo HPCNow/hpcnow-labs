@@ -153,12 +153,14 @@ In order to get access to any of the domains’ console, execute the following c
 snow console <domain_name>
 ```
 In order exit from a console session, use ```<CTRL> ]```.
+<!--
 ## Hardware Stress on Compute Nodes - under development
 sNow! installs by default a small OS image which allows stressing the compute nodes to detect potential hardware issues early.
 Consider running those tests while you are deploying the first node or customising the deployment templates. This image can also be used to generate the mac addresses database (see next section).
 ```
 snow boot node[001-999] stress-x64
 ```
+-->
 ## Mac Addresses Gathering
 Collecting the MAC addresses in a cluster is simple but can be time-consuming. This [section](https://hpcnow.github.io/snow-documentation/mydoc_node_how_to_collect_the_mac_addresses.html) explains some tricks to avoid spending too much time doing this.
 
