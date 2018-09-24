@@ -104,18 +104,18 @@ In order to enable GRES plugins, a comma delimited list of GRES must be provided
 * *GresTypes* defines the list of generic resources to be managed.
 * *Gres* defines the resource configuration details in the format <name>[:<type>][:no_consume]:<number>[K|M|G]
 
-### Configure support for bandwidth
+### Configure support for a custom GRES (AI ASIC chips)
 
 Include bandwidth GRES in GresTypes parameter in the slurm.conf file:
 
 ```
-GresTypes=bandwidth
+GresTypes=myriad
 ```
 
-Setup the nodes.conf file to extend the nodes definition with ```Gres=bandwidth:no_consume:4G```:
+Setup the nodes.conf file to extend the nodes definition with ```Gres=myriad:no_consume:4```:
 
 ```
-NodeName=hsw[001-512]      NodeAddr=slurm-simulator NodeHostName=slurm-simulator RealMemory=258048  Sockets=2 CoresPerSocket=12  ThreadsPerCore=1 State=UNKNOWN Feature=hsw Gres=bandwidth:no_consume:4G
+NodeName=hsw[001-512]      NodeAddr=slurm-simulator NodeHostName=slurm-simulator RealMemory=258048  Sockets=2 CoresPerSocket=12  ThreadsPerCore=1 State=UNKNOWN Feature=hsw Gres=myriad:no_consume:4
 NodeName=skl[001-512]      NodeAddr=slurm-simulator NodeHostName=slurm-simulator RealMemory=389120  Sockets=2 CoresPerSocket=20  ThreadsPerCore=1 State=UNKNOWN Feature=skl
 NodeName=knl[0001-1024]    NodeAddr=slurm-simulator NodeHostName=slurm-simulator RealMemory=389120  Sockets=1 CoresPerSocket=72  ThreadsPerCore=4 State=UNKNOWN Feature=knl
 ```
@@ -127,7 +127,7 @@ Modify gres.conf file to define the nodes that have this special resource
 
 ```
 # Configure support for our four GPUs, plus bandwidth
-NodeName=hsw[001-512] Name=bandwidth Count=4G
+NodeName=hsw[001-512] Name=myriad Count=4
 ```
 
 Finally, restart the Slurm daemons to apply the changes.
@@ -139,5 +139,5 @@ In order to request a specific GRES, the users need to use ```--gres``` or ```#S
 The option requires an argument specifying which generic resources are required and how many resources. The resource specification is of the form name[:type:count]. 
 
 ```
-su - user01 -c "sbatch -n 512 --gres=bandwidth:2G --wrap='env; srun -n 1 sleep 120'"
+su - user01 -c "sbatch -n 512 --gres=myriad:2 --wrap='env; srun -n 1 sleep 120'"
 ```
