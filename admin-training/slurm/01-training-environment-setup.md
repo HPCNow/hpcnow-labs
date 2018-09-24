@@ -33,12 +33,15 @@ The following examples are based on the following parameters. Change them as req
 ![Host Network DHCP](../images/virtualbox-host-network-manager-02.png?raw=true "Host Network Manager 02")
 
 ### Download slurm training VM image
-The slurm training image can be downloaded from [HPCNow! repository server](http://snow.hpcnow.com/training/slurm/). The default format is *OVF Virtual Machine* but other options are also available.
+The slurm training image can be downloaded from [HPCNow! repository server](http://snow.hpcnow.com/training/slurm/). 
 
+<!--
+The default format is *OVF Virtual Machine* but other options are also available.
 * [OVF Virtual Machine / ESXi (.ovf)](http://snow.hpcnow.com/training/slurm/Slurm_17.11_Leap_42.1.x86_64-0.0.11.ovf.tar.gz)
 * [VMware Workstation / VirtualBox (.vmdk)](http://snow.hpcnow.com/training/slurm/Slurm_17.11_Leap_42.1.x86_64-0.0.11.vmx.tar.gz)
 * [Preload ISO (.iso)](http://snow.hpcnow.com/training/slurm/Slurm_17.11_Leap_42.1.x86_64-0.0.11.iso)
 * [SUSE Cloud / OpenStack / KVM (.qcow2)](http://snow.hpcnow.com/training/slurm/Slurm_17.11_Leap_42.1.x86_64-0.0.11.qcow2.tar.gz)
+-->
 
 ### Import image
 
