@@ -68,3 +68,11 @@ Start the virtual machine and access via SSH with your preferred SSH client:
 * port: 22
 * user: root
 * password: HPCNOW
+
+### Update the hostname
+If you are importing this image into your infrastructure, the DHCP could update the hostname. Consider recovering the original hostname with the following command:
+
+```
+hostname slurm-simulator
+```
+Otherwise, you can update the frontend node server in the Slurm configuration.
