@@ -28,7 +28,7 @@ Open ```/etc/slurm/slum.conf``` and setup the following parameters:
 ```
 Epilog=/etc/slurm/prolog/job.sh
 Prolog=/etc/slurm/prolog/job.sh
-TaskEpilog=/etc/slurm/prolog/task.sh
+TaskEpilog=/etc/slurm/epilog/task.sh
 TaskProlog=/etc/slurm/prolog/task.sh
 SrunEpilog=/etc/slurm/epilog/srun.sh
 SrunProlog=/etc/slurm/prolog/srun.sh
