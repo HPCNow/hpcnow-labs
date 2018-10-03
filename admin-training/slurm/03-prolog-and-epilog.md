@@ -23,7 +23,7 @@ Slurm supports a multitude of prolog and epilog programs. Note that for security
 
 ## Prolog and Epilog
 
-Open ```/etc/slurm/slum.conf``` and setup the following parameters:
+Open ```/etc/slurm/slurm.conf``` and setup the following parameters:
 
 ```
 Epilog=/etc/slurm/prolog/job.sh
