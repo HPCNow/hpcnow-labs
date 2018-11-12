@@ -1,4 +1,3 @@
-# Hands-On 04: Workload Manager
 <!--
 Copyright (C) 2017 Jordi Blasco
 Permission is granted to copy, distribute and/or modify this document
@@ -7,7 +6,12 @@ or any later version published by the Free Software Foundation;
 with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License".
+
+HPCNow!, hereby disclaims all copyright interest in this document
+`snow-labs' written by Jordi Blasco.
 -->
+# Hands-On 04: Workload Manager
+
 In this hands-on, we are going to interact with the workload manager by submiting different type of jobs, listing and cancelling them.
 
 *Estimated time : 30 minutes*
@@ -61,7 +65,7 @@ Nodes states
 
 Jobs states
 
-- queued/pending 
+- queued/pending
 - running
 - suspended/preempted
 - cancelled/completed/failed
@@ -73,9 +77,9 @@ Slurm gives each job a priority, and works to free up appropriate resources for 
 * *Fairshare*: your job will be given an initial score based on your share and your historical use of the cluster, with your recent use being given more weight.
 * *Partition priority*: the partitions priority is defined attending to the job lenght. So, the longer is the job, the less priority it will have.
 <!-- * *QoS priority*: the QoS priority is defined attending to the urgency of the job. -->
-* *Job size*: jobs for which (number of cores) / (walltime) is greater get more priority. 
+* *Job size*: jobs for which (number of cores) / (walltime) is greater get more priority.
 * *wait time*: a job gets more priority as it waits. This wait-time bonus gradually increases over a certain period of time.
- 
+
 ## Running a job
 
 ### Most common Slurm commands
@@ -118,11 +122,11 @@ sbatch -t 00:01:00 --wrap "sleep 30; echo hello world"
 ```
 
 * The `-t` option stands for *time* and sets a limit on the total run time of the job allocation.
-* If no time limit is defined, the maximum time limit available in the longest partition will be applied. 
-* The `--wrap` option means that the following string (in "") will be turned by Slurm in a simple shell script. 
+* If no time limit is defined, the maximum time limit available in the longest partition will be applied.
+* The `--wrap` option means that the following string (in "") will be turned by Slurm in a simple shell script.
 
 ### Monitoring your work on the cluster
-The jobs are scheduled in terms of your relative job priority. Slurm can estimate when the job is going to be scheduled (START_TIME). 
+The jobs are scheduled in terms of your relative job priority. Slurm can estimate when the job is going to be scheduled (START_TIME).
 The default command to list batch jobs is ```squeue```. sNow! provides an alias which provides additional information like the priority or the estimated starttime.
 * sq list all the jobs
 * squ list all your jobs
@@ -154,7 +158,7 @@ sacct -j 8030  -o JobID,MaxVMSize,ReqMem
 * The second column is the total amount of memory used by the job, in kilo-bytes.
 * The third column is the requested amount of memory per CPU, in mega-bytes (Mc = mega bytes / cpu).
 * The rows reflect the number of 'srun' commands you used in the script. The first two rows are related to the memory used to submit the job, and are rather irrelevant.
-* If your application crashed, and the MaxVMSize is close to the ReqMem, it might help to increase the requested memory. 
+* If your application crashed, and the MaxVMSize is close to the ReqMem, it might help to increase the requested memory.
 * If ReqMem is much larger than MaxVMSize, you should request less.
 
 ### Job outputs
@@ -220,7 +224,7 @@ srun mpi_binary
 #SBATCH -J HybridJob
 #SBATCH --time=01:00:00
 #SBATCH --ntasks=4
-#SBATCH --mem-per-cpu=8G 
+#SBATCH --mem-per-cpu=8G
 #SBATCH --cpus-per-task=8
 ml Application
 srun hybrid_binary
@@ -258,7 +262,7 @@ There is a quite extensive list of real applications submit scripts available in
 Please, feel free to clone and pull new request to include more examples.
 
 ### Submitting and managing jobs
-In this section we are going to submit few jobs using an example code. We found [heart_demo](https://github.com/CardiacDemo/Cardiac_demo.git) really usefull code for teaching the very basics of HPC and also for teaching performance analysis (hands-on 08 to 10). 
+In this section we are going to submit few jobs using an example code. We found [heart_demo](https://github.com/CardiacDemo/Cardiac_demo.git) really usefull code for teaching the very basics of HPC and also for teaching performance analysis (hands-on 08 to 10).
 
 The "heart_demo" project is developed by Alexey Malkhanov (Intel) and it implements minimal functionality for a real-time 3D cardiac electrophysiology simulation. More information about this project available [here](https://github.com/CardiacDemo/Cardiac_demo.git).
 
@@ -312,7 +316,7 @@ Another way to achieve the same could be using switches as constraints but this 
 Slurm native job profiling allows you to gather profiling data from every task and allocated node of your job. At this time the metrics that we can collect are CPU frequency, CPU utilisation, memory consumption (RSS and VMSize) and I/O.
 The data is sampled at a fixed rate and is stored in a HDF5 file. Please be aware that the required disk space for the profiling data may be quite large, depending on job size, runtime, and sampling rate.
 In order to use this feature, add the following option in the srun command line in your submission script:
- 
+
 ```
 srun --profile=task --acctg-freq=5 your_binary
 ```
@@ -320,15 +324,15 @@ srun --profile=task --acctg-freq=5 your_binary
 ```--acctg-freq``` is the sampling rate in seconds.
 
  In order to merge the node local files in /scratch/profiling/${USER} to single file, we suggest you add the following line at the end of your submit script
-  
+
 ```
 sh5util -j $SLURM_JOBID -o profile.h5
 ```
 
 You can visualise the profile data in the cluster using hdfview, or you can transfer it to your desktop computer and visualize it there.
-   
+
 ```
 hdfview.sh profile.h5
 ```
 
-For more information about profiling with Slurm please see http://slurm.schedmd.com/hdf5_profile_user_guide.html 
+For more information about profiling with Slurm please see http://slurm.schedmd.com/hdf5_profile_user_guide.html

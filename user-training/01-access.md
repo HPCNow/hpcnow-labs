@@ -1,4 +1,3 @@
-# Hands-On 01: Getting access to the cluster
 <!--
 Copyright (C) 2017 Jordi Blasco
 Permission is granted to copy, distribute and/or modify this document
@@ -7,7 +6,12 @@ or any later version published by the Free Software Foundation;
 with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License".
+
+HPCNow!, hereby disclaims all copyright interest in this document
+`snow-labs' written by Jordi Blasco.
 -->
+# Hands-On 01: Getting access to the cluster
+
 In this hands-on, we are going to setup the required software in order to be able to access to the High Performance Computing cluster.
 
 *Estimated time : 15 minutes*
@@ -65,4 +69,3 @@ source ~/.bashrc
 ```
 git clone --recursive https://github.com/HPCNow/snow-labs
 ```
-

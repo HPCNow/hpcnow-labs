@@ -1,3 +1,15 @@
+<!--
+Copyright (C) 2017 Jordi Blasco
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+HPCNow!, hereby disclaims all copyright interest in this document
+`snow-labs' written by Jordi Blasco.
+-->
 # Hands-On 00: Overview Demo
 In this hands-on, we are going to install a standard High Performance Computing cluster based on a single sNow! server.
 
@@ -218,7 +230,7 @@ Example:
 snow boot mycluster centos-7.4-minimal
 ```
 ## Modify Single System Image
-The following command provides write access to a chroot environment inside a rootfs image. The prompt provided by this command also shows that the shell session is allocated inside a particular image chroot. 
+The following command provides write access to a chroot environment inside a rootfs image. The prompt provided by this command also shows that the shell session is allocated inside a particular image chroot.
 
 In order to exit from this environment, type ```exit``` or press ```Ctrl+d```.
 ```

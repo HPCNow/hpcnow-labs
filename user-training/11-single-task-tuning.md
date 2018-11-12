@@ -1,4 +1,3 @@
-# Hands-On 11: Single Task Tuning
 <!--
 Copyright (C) 2017 Jordi Blasco
 Permission is granted to copy, distribute and/or modify this document
@@ -7,7 +6,11 @@ or any later version published by the Free Software Foundation;
 with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License".
+
+HPCNow!, hereby disclaims all copyright interest in this document
+`snow-labs' written by Jordi Blasco.
 -->
+# Hands-On 11: Single Task Tuning
 
 In this hands-on, we are going to explore potential tuning oportunities in single tasks by using Intel advisor for vectorization and OpenMP parallelization.
 In general, all the codes can take advantage of this exercise, from simple serial applications to complex hybrid MPI+OpenMP applications.
@@ -28,7 +31,7 @@ Load the required environment for this hands-on:
 ml intel/2017a
 ```
 
-Compile the first serial example ([```serial_mm.c```](examples/single_task_tuning/serial_mm.c)) and run the program: 
+Compile the first serial example ([```serial_mm.c```](examples/single_task_tuning/serial_mm.c)) and run the program:
 
 ```
 cd $HOME/snow-labs/user-training/examples/single_task_tuning
@@ -54,7 +57,7 @@ The reported runtime is what we are going to use to compare further improvements
 Explore potential auto-vectorization opportunities by compiling the code with the following options.
 
 ```
-icc -O3 -xHost -qopt-report=5 -qopt-report-phase:vec serial_mm.c -o serial_mm_vec 
+icc -O3 -xHost -qopt-report=5 -qopt-report-phase:vec serial_mm.c -o serial_mm_vec
 ./serial_mm_vec
 ```
 
@@ -75,7 +78,7 @@ icc -O3 -xHost -qopt-report -qopt-report-phase:vec serial_mm.c -o serial_mm_nove
 ./serial_mm_novec
 ```
 
-## Auto-parallelization 
+## Auto-parallelization
 
 Explore potential auto-parallelization opportunities by compiling the code with the following options:
 
@@ -83,7 +86,7 @@ Explore potential auto-parallelization opportunities by compiling the code with 
 icc -parallel -O3 -qopt-report-phase:par -qopt-report=5 serial_mm.c -o serial_mm_openmp
 ```
 
-This generates a new report file (```serial_mm.optrpt```) with the attemps to parallelize the code with OpenMP. 
+This generates a new report file (```serial_mm.optrpt```) with the attemps to parallelize the code with OpenMP.
 
 The compiler reports some suggestions but as developers of the code we already know that there are better ways to implement OpenMP directives in this simple code.
 Compare the suggested OpenMP directives with those available in the file [```openmp_mm.c```](examples/single_task_tuning/openmp_mm.c)
@@ -92,9 +95,9 @@ Compare the suggested OpenMP directives with those available in the file [```ope
 icc -qopenmp -O3 -xHost -qopt-report-phase:openmp -qopt-report=5 openmp_mm.c -o openmp_mm_novec -no-vec
 ```
 
-The report will tell only what we instructed to parallelize. 
+The report will tell only what we instructed to parallelize.
 
-Using the [```scalability_test.sh```](examples/single_task_tuning/scalability_test.sh) available in ```$HOME/snow-labs/user-training/examples/single_task_tuning``` and the following command lines, you should be able to find the most optimal number of OpenMP threads to run with. 
+Using the [```scalability_test.sh```](examples/single_task_tuning/scalability_test.sh) available in ```$HOME/snow-labs/user-training/examples/single_task_tuning``` and the following command lines, you should be able to find the most optimal number of OpenMP threads to run with.
 
 ```
 cd $HOME/snow-labs/user-training/examples/single_task_tuning

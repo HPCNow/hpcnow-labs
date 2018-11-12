@@ -1,4 +1,3 @@
-# Hands-On 09: Intel Trace Analyzer
 <!--
 Copyright (C) 2017 Jordi Blasco
 Permission is granted to copy, distribute and/or modify this document
@@ -7,7 +6,12 @@ or any later version published by the Free Software Foundation;
 with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License".
+
+HPCNow!, hereby disclaims all copyright interest in this document
+`snow-labs' written by Jordi Blasco.
 -->
+# Hands-On 09: Intel Trace Analyzer
+
 In this hands-on, we are going to analise the traces collected in the previous hands-on session with Intel Trace Analyzer.
 
 *Estimated time : 30 minutes*
@@ -42,10 +46,9 @@ traceanalyzer ./heart_demo.single.stf &
 Where ```XXXXXXX``` is the JobID of the job which collected the traces
 
 Explore the result data analysing:
-* Event Timeline 
+* Event Timeline
 * Ungroup MPI Functions
 * Detect Serialization in Function Profile and Message Profile
 * Compare Original Trace File With Idealized Trace File
 * Message Profile chart
 * Explore Potential issues and suggested sections of the code affected
-

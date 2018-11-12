@@ -1,4 +1,3 @@
-# Hands-On 05: Setting Up Complex Workflows
 <!--
 Copyright (C) 2017 Jordi Blasco
 Permission is granted to copy, distribute and/or modify this document
@@ -7,7 +6,12 @@ or any later version published by the Free Software Foundation;
 with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License".
+
+HPCNow!, hereby disclaims all copyright interest in this document
+`snow-labs' written by Jordi Blasco.
 -->
+# Hands-On 05: Setting Up Complex Workflows
+
 In this hands-on, we are going to setup complex workflows based on real life applications.
 
 *Estimated time : 30 minutes*
@@ -24,7 +28,7 @@ interactive
 ```
 
 ## Job array based on multiple input files or parameters
-If you need to explore several parameters or to use several input files you can create a mapping file like params.dat and use a single array job description file to run all the simulations. 
+If you need to explore several parameters or to use several input files you can create a mapping file like params.dat and use a single array job description file to run all the simulations.
 The script ```array_builder.sh``` is a simple example that generates the params.dat file. In this case, the params.dat contains 500 lines.
 
 ```
@@ -90,7 +94,7 @@ done
 srun --multi-prog multi.conf
 ```
 
-The content of multi.conf file example: 
+The content of multi.conf file example:
 
 ```
 0      echo     'I am the Master'

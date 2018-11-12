@@ -1,4 +1,3 @@
-# Hands-On 02: Data management
 <!--
 Copyright (C) 2017 Jordi Blasco
 Permission is granted to copy, distribute and/or modify this document
@@ -7,7 +6,12 @@ or any later version published by the Free Software Foundation;
 with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License".
+
+HPCNow!, hereby disclaims all copyright interest in this document
+`snow-labs' written by Jordi Blasco.
 -->
+# Hands-On 02: Data management
+
 In this hands-on, we are going to work with common tools to manage your data.
 
 *Estimated time : 15 minutes*
@@ -16,18 +20,18 @@ In this hands-on, we are going to work with common tools to manage your data.
 Cluster account.
 Laptop with SSH client.
 
-# ToDo 
+# ToDo
 
 ## Transferring files back and forth
 
 Now you can transfer the files you have downloaded in the cluster to your laptop. We are going to use different tools and explain the advantages of each one.
 
-### Using a GUI 
+### Using a GUI
 If you are using MobaXterm, you can use the drang'n'drop user interface which this program offers.
 
 ### Using Secure Copy
 
-You can use the command line built-in programme ```scp``` to transfer files. This option usually provides better performance, specially when you have to transfer large amount of data. 
+You can use the command line built-in programme ```scp``` to transfer files. This option usually provides better performance, specially when you have to transfer large amount of data.
 It should work on standard Mac and Linux operating systems (in the built-in terminal). It will also work in the MobaXTerm command line on Windows.
 
 To use `scp` to copy the data from your local machine to your cluster, type in the terminal on your local machine.
@@ -35,14 +39,14 @@ To use `scp` to copy the data from your local machine to your cluster, type in t
 ```
 scp -rp -P 22022 <origin_path> username@login.mydomain.com:<destination_path>
 
-``` 
+```
 
 To use `scp` to copy the data from your cluster to your laptop, type in the terminal on your local machine.
 
 ```
-scp -rp -P 22022 username@login.mydomain.com:<destination_path> <origin_path> 
+scp -rp -P 22022 username@login.mydomain.com:<destination_path> <origin_path>
 
-``` 
+```
 
 If you have created a new SSH key for accessing to the cluster, you need to specify the path:
 

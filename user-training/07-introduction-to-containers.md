@@ -1,4 +1,3 @@
-# Hands-On 07: Running HPC jobs in containers
 <!--
 Copyright (C) 2017 Jordi Blasco
 Permission is granted to copy, distribute and/or modify this document
@@ -7,7 +6,12 @@ or any later version published by the Free Software Foundation;
 with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License".
+
+HPCNow!, hereby disclaims all copyright interest in this document
+`snow-labs' written by Jordi Blasco.
 -->
+# Hands-On 07: Running HPC jobs in containers
+
 In this hands-on, we are going to setup a realistic container environment based on Singularity using Slurm support for this container technology.
 
 Singularity containers allows users to have full control of their environment and also allows to have the exact user experience in any single place where the container runs.
@@ -36,7 +40,7 @@ interactive
 
 You can make and customize containers locally, and then run them on your shared resource. You can even import Docker image content without sudo permissions. Singularity also allows you to leverage the resources of whatever host you are on. This includes HPC interconnects, resource managers, file systems, GPUs and/or accelerators, etc.
 
-The following diagram defines the workflow to create, populate and finally run the singularity container. 
+The following diagram defines the workflow to create, populate and finally run the singularity container.
 
 ![Singularity Flow](images/singularity-2.3-flow.png?raw=true "Singularity Flow")
 
@@ -55,7 +59,7 @@ Alternatively, you can create and pull an image from Docker hub (```docker://```
 * ```singularity pull docker://centos:latest```
 * ```singularity pull shub://singularityhub/centos:master```
 
-The list of images of each hub are available 
+The list of images of each hub are available
 * https://singularity-hub.org/collections
 * https://hub.docker.com
 
@@ -123,7 +127,7 @@ You can use the following optional argument in ```srun```:
 
 ```
 srun --image=/path/to/the/image
-``` 
+```
 
 or as a sbatch option:
 
@@ -139,9 +143,9 @@ In both cases, the image is expected to be available in all the compute nodes. S
 sbatch --image=$HOME/singularityhub-centos-master.img --wrap="srun uname -a"
 ```
 
-## Install Singularity in your workstation 
+## Install Singularity in your workstation
 
-We strongly suggest to create the basic template of your container in your personal workstation, where you have installed Singularity and you also have sudo privileges. If you want to expose all the instruction sets available in the architecture of your cluster, you may want to transfer the container to the cluster and compile the software there. 
+We strongly suggest to create the basic template of your container in your personal workstation, where you have installed Singularity and you also have sudo privileges. If you want to expose all the instruction sets available in the architecture of your cluster, you may want to transfer the container to the cluster and compile the software there.
 
 In order to install Singularity in your workstation, just follow these simple instructions:
 

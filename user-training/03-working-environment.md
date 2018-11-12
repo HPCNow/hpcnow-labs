@@ -1,4 +1,3 @@
-# Hands-On 03: Working environment
 <!--
 Copyright (C) 2017 Jordi Blasco
 Permission is granted to copy, distribute and/or modify this document
@@ -7,7 +6,12 @@ or any later version published by the Free Software Foundation;
 with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License".
+
+HPCNow!, hereby disclaims all copyright interest in this document
+`snow-labs' written by Jordi Blasco.
 -->
+# Hands-On 03: Working environment
+
 In this hands-on, we are going to interact with the common cluster user working environment.
 
 *Estimated time : 15 minutes*
@@ -21,7 +25,7 @@ Access to the login node
 
 ### Understand difference between login and compute nodes
 
-As mentioned in the first hands-on session, the login nodes are meant to be simple but very secure nodes to provide access to the files and to manage the batch jobs. 
+As mentioned in the first hands-on session, the login nodes are meant to be simple but very secure nodes to provide access to the files and to manage the batch jobs.
 Those nodes are not suitable for running CPU intensive codes or compile your code. Actually, the binaries generated in the login nodes may not be compatible with the compute node or able to take advantage of the expected performance of the compute nodes.
 
 In order to test the code and interact with the command line, you can use the ```interactive``` command explained in the next section.
@@ -40,7 +44,7 @@ In order to test the code and interact with the command line, you can use the ``
  - download the results
  - submit and manage batch jobs
  - initiate an interactive job session
- 
+
 The following diagram represents the path to get access to HPC resources:
 ![User Environment](images/user_environment.png?raw=true "User Environment")
 ### Interactive command
@@ -129,4 +133,3 @@ All the examples used in these hands-on sessions are using ```ml`` short-cut.
 * ```ml -foo -bar baz goo``` - means: module unload foo bar; module load baz goo;
 
 More information at http://www.tacc.utexas.edu/tacc-projects/lmod
-

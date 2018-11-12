@@ -1,3 +1,15 @@
+<!--
+Copyright (C) 2017 Jordi Blasco
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+HPCNow!, hereby disclaims all copyright interest in this document
+`snow-labs' written by Jordi Blasco.
+-->
 # Hands-On 01: Getting access
 In this hands-on, we are going to deploy required services to operate a standard High Performance Computing cluster.
 
@@ -46,4 +58,3 @@ source ~/.bashrc
 ```
 git clone --recursive https://github.com/HPCNow/snow-labs
 ```
-

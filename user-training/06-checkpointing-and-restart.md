@@ -1,4 +1,3 @@
-# Hands-On 06: Checkpointing and Restart
 <!--
 Copyright (C) 2017 Jordi Blasco
 Permission is granted to copy, distribute and/or modify this document
@@ -7,7 +6,12 @@ or any later version published by the Free Software Foundation;
 with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License".
+
+HPCNow!, hereby disclaims all copyright interest in this document
+`snow-labs' written by Jordi Blasco.
 -->
+# Hands-On 06: Checkpointing and Restart
+
 In this hands-on, we are going to setup checkpointing and restart and how to implement it in your own code.
 
 *Estimated time : 30 minutes*
@@ -25,7 +29,7 @@ interactive
 
 ## Checkpointing and Restart
 
-The native C&R will depend on the used application or code. 
+The native C&R will depend on the used application or code.
 - Periodic Checkpointing
   If your code creates a checkpoint file per cycle, and you know how long it takes, you can set a minimum time limit on the job description. If specified, the job may have it's --time limit lowered to a value no lower than --time-min if doing so permits the job to begin execution earlier than otherwise possible. The job's time limit will not be changed after the job is allocated resources. This is performed by a backfill scheduling algorithm to allocate resources otherwise reserved for higher priority jobs. Acceptable time formats include "minutes", "minutes:seconds", "hours:minutes:seconds", "days-hours", "days-hours:minutes" and "days-hours:minutes:seconds".
 
@@ -70,4 +74,3 @@ The --time-min is the minimum time to perform the compute of checkpointable cycl
 #SBATCH --time-min=00:00:30
 srun ./proactive_cr
 ```
-

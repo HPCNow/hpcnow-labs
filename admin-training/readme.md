@@ -1,6 +1,4 @@
-# HPC Admin Training
-
-```
+<!--
 Copyright (C) 2017 Jordi Blasco
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3
@@ -11,8 +9,8 @@ Free Documentation License".
 
 HPCNow!, hereby disclaims all copyright interest in this document
 `snow-labs' written by Jordi Blasco.
-David Tur, CEO of HPCNow!, 23 April 2017
-```
+-->
+# HPC Admin Training
 
 This folder contains the required material to deliver training to sNow! administrators. The content of this repo is distributed under the GPLv3 license.
 As part of the sNow! project, and as part of a community effort, we would like to encourage you to contribute with feedback, improving the quality and/or including new training material to speed up the learning curve for end users.
@@ -47,3 +45,9 @@ As part of the sNow! project, and as part of a community effort, we would like t
 | [Advanced scheduling strategies](slurm/07-advanced-scheduling-strategies.md) | Intermediate          |
 | [User management](slurm/08-user-management.md)                               | Intermediate          |
 | [Resource reservation](slurm/09-resource-reservation.md)                     | Intermediate          |
+
+| Containers                                                                   | Target Audience       |
+| ---------------------------------------------------------------------------- | --------------------- |
+| [Docker Swarm Introduction](containers/01-docker-swarm-introduction.md)      | Intermediate          |
+| [LXD Introduction](containers/02-lxd-introduction.md)                        | Intermediate          |
+| [Singularity Introduction](containers/03-singularity-introduction.md)        | Intermediate          |

@@ -1,4 +1,3 @@
-# Hands-On 08: Intel Trace Collector
 <!--
 Copyright (C) 2017 Jordi Blasco
 Permission is granted to copy, distribute and/or modify this document
@@ -7,7 +6,12 @@ or any later version published by the Free Software Foundation;
 with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled "GNU
 Free Documentation License".
+
+HPCNow!, hereby disclaims all copyright interest in this document
+`snow-labs' written by Jordi Blasco.
 -->
+# Hands-On 08: Intel Trace Collector
+
 In this hands-on, we are going to collect statistics and key metrics with Intel MPI and Intel Trace Collector. If your application is already compiled with Intel MPI, we strongly suggest you to use your own code using a short test.
 
 *Estimated time : 15 minutes*
@@ -63,7 +67,7 @@ mpiicpc ../heart_demo.cpp ../luo_rudy_1991.cpp ../rcm.cpp ../mesh.cpp -tcollect 
         -D_GLIBCXX_USE_CXX11_ABI=0 $VT_ADD_LIBS
 ```
 
-Using the [```scalability_test.sh```](examples/mpi_tuning/scalability_test.sh) and the following command lines, you should be able to find the most optimal combination of processes and threads to run with. 
+Using the [```scalability_test.sh```](examples/mpi_tuning/scalability_test.sh) and the following command lines, you should be able to find the most optimal combination of processes and threads to run with.
 
 ```
 cd $HOME/snow-labs/user-training/examples/mpi_tuning
@@ -82,4 +86,3 @@ sbatch --ntasks=XX --cpus-per-task=YY Intel-Trace-Analyser-and-Collector-instrum
 Where XX are the number of MPI tasks and YY are the number of OpenMP threads which delivered the best performance.
 
 Once the job are done, you will find the traces collected in: ```$HOME/snow-labs/user-training/OUT/```
-
