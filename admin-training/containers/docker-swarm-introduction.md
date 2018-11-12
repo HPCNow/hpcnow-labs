@@ -62,7 +62,7 @@ snow deploy swarm03
 -->
 ## Swarm Interaction
 
-1. Check the status of the Docker Swarm cluster
+### 1. Check the status of the Docker Swarm cluster
 ```
 snow@swarm01:~$ docker node ls
 ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
@@ -71,7 +71,7 @@ t3z5ru9ssu20b7a9i9bj4p5sl     swarm02             Ready               Active    
 o4vbamp797i2yrvo7anqlgd8y     swarm03             Ready               Active                                  18.03.1-ce
 ```
 
-2. Deploy the first application component as Docker service
+### 2. Deploy the first application component as Docker service
 The following example will create a very simple container running one hour sleep as a service.
 ```
 snow@swarm01:~$ docker service create --name sleep_app alpine sleep 3600
@@ -82,7 +82,7 @@ verify: Service converged
 ```
 This will pull the ubuntu image and run 'sleep 3600' in one container.
 
-3. Verify that the service has been created in the Swarm cluster.
+### 3. Verify that the service has been created in the Swarm cluster.
 ```
 snow@swarm01:~$ docker service ls
 ID                  NAME                MODE                REPLICAS            IMAGE                        PORTS
@@ -90,7 +90,7 @@ ID                  NAME                MODE                REPLICAS            
 ```
 If you have previous experiences with Docker, it may not seem that we have done anything very differently than just running a docker run. The key difference is that the container has been scheduled on a swarm cluster.
 
-4. Scale the application
+### 4. Scale the application
 Imagine a situation were this particular application is under high demand. Docker Swarm allows to re-scale and re-balance the service across the three swarm nodes.
 In the following example we will create 9 replicas of the example application.
 ```
@@ -123,7 +123,7 @@ rtmfau8n152p        sleep_app.8         alpine:latest       swarm02             
 3o9nev8wwtu6        sleep_app.9         alpine:latest       swarm01             Running             Running 36 seconds ago
 ```
 
-5. Shrink the service
+### 5. Shrink the service
 Docker Swarm also allows running the inverse operation. The following example will reduce the number of replicas to 3.
 ```
 snow@swarm01:~$ docker service update --replicas 3 sleep_app
@@ -136,7 +136,7 @@ zgmceedsgj3l        sleep_app.1         alpine:latest       swarm03             
 n1f8t2scpaqo        sleep_app.3         alpine:latest       swarm02             Running             Running 6 minutes ago
 f0leytx1fj3i        sleep_app.4         alpine:latest       swarm01             Running             Running 6 minutes ago
 ```
-6. Reschedule the containers after a node failure or node draining.
+### 6. Reschedule the containers after a node failure or node draining.
 The following section will illustrate what happen when a node is drained or faulty.
 Take a look at the status of your nodes again by running ``docker node ls``.
 ```
@@ -187,8 +187,7 @@ n1f8t2scpaqo         \_ sleep_app.3     alpine:latest       swarm02             
 wu8hj9j9e9uh        sleep_app.4         alpine:latest       swarm03             Running             Running 2 minutes ago
 f0leytx1fj3i         \_ sleep_app.4     alpine:latest       swarm01             Shutdown            Shutdown 2 minutes ago
 ```
-
-7. Cleaning Up
+### 7. Cleaning Up
 The following example will remove the service.
 ```
 docker service rm sleep_app
