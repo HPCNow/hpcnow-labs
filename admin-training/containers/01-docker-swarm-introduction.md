@@ -149,7 +149,7 @@ o4vbamp797i2yrvo7anqlgd8y     swarm03             Ready               Active    
 We will simulate a node failure with the command ``snow destroy swarm02``
 We can check the status of the cluster with the following command:
 ```
-root@swarm01:~# docker node ls
+snow@swarm01:~$ docker node ls
 ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
 hxakgodvxtz9ynsc0nniyz7ol *   swarm01             Ready               Active              Leader              18.03.1-ce
 t3z5ru9ssu20b7a9i9bj4p5sl     swarm02             Down                Active                                  18.03.1-ce
@@ -214,7 +214,7 @@ Creating service monitor_grafana
 ```
 Now you can check the status of each service with the command:
 ```
-root@swarm01:~# docker stack services monitor
+snow@swarm01:~$ docker stack services monitor
 ID                  NAME                     MODE                REPLICAS            IMAGE                                                 PORTS
 058pildrvl8i        monitor_elasticsearch3   replicated          1/1                 docker.elastic.co/elasticsearch/elasticsearch:6.2.4
 4gbk7a7zoqz8        monitor_kibana           replicated          0/1                 docker.elastic.co/kibana/kibana:6.3.2                 *:5601->5601/tcp
