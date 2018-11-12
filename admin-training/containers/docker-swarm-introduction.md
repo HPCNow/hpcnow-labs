@@ -10,7 +10,7 @@ Free Documentation License".
 HPCNow!, hereby disclaims all copyright interest in this document
 `snow-labs' written by Jordi Blasco.
 -->
-# Hands-On 0: Docker Swarm Introduction
+# Hands-On 1: Docker Swarm Introduction
 In this hands-on, we are going to learn how to interact with Docker Swarm cluster provisioned with sNow! cluster manager.
 
 *Estimated time : ~1 hour*
