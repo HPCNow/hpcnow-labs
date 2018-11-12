@@ -63,7 +63,6 @@ snow deploy swarm03
 ## Swarm Interaction
 
 1. Check the status of the Docker Swarm cluster
-
 ```
 snow@swarm01:~$ docker node ls
 ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
@@ -74,19 +73,16 @@ o4vbamp797i2yrvo7anqlgd8y     swarm03             Ready               Active    
 
 2. Deploy the first application component as Docker service
 The following example will create a very simple container running one hour sleep as a service.
-
 ```
 snow@swarm01:~$ docker service create --name sleep_app alpine sleep 3600
 8o9bicf4mkcpt2s0h23wwckn6
 overall progress: 1 out of 1 tasks
 1/1: running   [==================================================>]
 verify: Service converged
-
 ```
 This will pull the ubuntu image and run 'sleep 3600' in one container.
 
 3. Verify that the service has been created in the Swarm cluster.
-
 ```
 snow@swarm01:~$ docker service ls
 ID                  NAME                MODE                REPLICAS            IMAGE                        PORTS
@@ -96,9 +92,7 @@ If you have previous experiences with Docker, it may not seem that we have done 
 
 4. Scale the application
 Imagine a situation were this particular application is under high demand. Docker Swarm allows to re-scale and re-balance the service across the three swarm nodes.
-
 In the following example we will create 9 replicas of the example application.
-
 ```
 snow@swarm01:~$ docker service update --replicas 9 sleep_app
 sleep_app
@@ -114,7 +108,6 @@ overall progress: 9 out of 9 tasks
 9/9: running   [==================================================>]
 verify: Service converged
 ```
-
 The new replicas of the application will be scheduled evenly across the Swarm nodes.
 ```
 snow@swarm01:~$ docker service ps sleep_app
@@ -132,7 +125,6 @@ rtmfau8n152p        sleep_app.8         alpine:latest       swarm02             
 
 5. Shrink the service
 Docker Swarm also allows running the inverse operation. The following example will reduce the number of replicas to 3.
-
 ```
 snow@swarm01:~$ docker service update --replicas 3 sleep_app
 ```
@@ -146,7 +138,6 @@ f0leytx1fj3i        sleep_app.4         alpine:latest       swarm01             
 ```
 6. Reschedule the containers after a node failure or node draining.
 The following section will illustrate what happen when a node is drained or faulty.
-
 Take a look at the status of your nodes again by running ``docker node ls``.
 ```
 snow@swarm01:~$ docker node ls
@@ -156,7 +147,6 @@ t3z5ru9ssu20b7a9i9bj4p5sl     swarm02             Ready               Active    
 o4vbamp797i2yrvo7anqlgd8y     swarm03             Ready               Active                                  18.03.1-ce
 ```
 We will simulate a node failure with the command ``snow destroy swarm02``
-
 We can check the status of the cluster with the following command:
 ```
 root@swarm01:~# docker node ls
@@ -165,7 +155,6 @@ hxakgodvxtz9ynsc0nniyz7ol *   swarm01             Ready               Active    
 t3z5ru9ssu20b7a9i9bj4p5sl     swarm02             Down                Active                                  18.03.1-ce
 o4vbamp797i2yrvo7anqlgd8y     swarm03             Ready               Active                                  18.03.1-ce
 ```
-
 The following command will show how the services have been re-balanced and re-scheduled:
 ```
 snow@swarm01:~$ docker service ps sleep_app
@@ -175,11 +164,8 @@ zgmceedsgj3l        sleep_app.1         alpine:latest       swarm03             
 n1f8t2scpaqo         \_ sleep_app.3     alpine:latest       swarm02             Shutdown            Running 12 minutes ago
 f0leytx1fj3i        sleep_app.4         alpine:latest       swarm01             Running             Running 12 minutes ago
 ```
-
 Finally, we can drain the Docker Swarm manager node (swarm03), which will degrade the cluster to only one node (swarm01).
-
 Using the command ``docker node update --availability drain <NODEID>``. Where the <NODEID> is provided by the command ``docker node ls``.
-
 ```
 snow@swarm01:~$ docker node update --availability drain o4vbamp797i2yrvo7anqlgd8y
 ```
@@ -202,7 +188,7 @@ wu8hj9j9e9uh        sleep_app.4         alpine:latest       swarm03             
 f0leytx1fj3i         \_ sleep_app.4     alpine:latest       swarm01             Shutdown            Shutdown 2 minutes ago
 ```
 
-6. Cleaning Up
+7. Cleaning Up
 The following example will remove the service.
 ```
 docker service rm sleep_app
@@ -216,7 +202,6 @@ Docker Swarm allows to deploy a complete application stack to the swarm. The dep
 In the container folder there is a file called monitoring-stack.yml which contains an example of a complete monitoring stack including a ElasticSearch cluster, kibana, InfluxDB, grafana, etc.
 
 Download this file to your swarm01 and execute the following command to orchestrate the monitoring stack example:
-
 ```
 snow@swarm01:~$ docker stack deploy -c monitoring-stack.yml monitor
 Creating service monitor_cadvisor
@@ -242,6 +227,6 @@ m0isumy3f1fe        monitor_elasticsearch    replicated          1/1            
 wdz7qvp39qwz        monitor_cadvisor         global              2/2                 google/cadvisor:latest
 ```
 
-More information:
+## More information:
 * [Admin guide](https://docs.docker.com/engine/swarm/admin_guide/).
 * [Rolling update](https://docs.docker.com/engine/swarm/swarm-tutorial/rolling-update/)
