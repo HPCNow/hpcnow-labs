@@ -24,15 +24,15 @@ This guide assumes that:
 2. The sNow! server will also provide access to share file system via NFS (/home and /sNow). Check the [sNow! documentation](https://hpcnow.github.io/snow-documentation) in order to integrate other cluster file systems like BeeGFS, Lustre or IBM Spectrum Scale.
 
 ## Installation
-Docker Swarm manager nodes implement the *Raft Consensus Algorithm* to manage the global cluster state.
+Docker Swarm manager nodes implement the **Raft Consensus Algorithm** to manage the global cluster state.
 This is key for managing and scheduling tasks in the cluster, and also storing the same consistent state.
 
-Raft *tolerates* up to *(N-1)/2 failures* and requires a majority or quorum of (N/2)+1 members to agree on values proposed to the cluster. This means that the size of the cluster should be at least 3 to resist one node failure or 5 to resist 3 nodes failures.
+Raft **tolerates** up to **(N-1)/2 failures** and requires a majority or quorum of (N/2)+1 members to agree on values proposed to the cluster. This means that the size of the cluster should be at least 3 to resist one node failure or 5 to resist 3 nodes failures.
 
 This hands-on assumes that you have already deployed three VMs (domains) dedicated for Docker Swarm cluster or three compute nodes (production solution).
 
 By default manager nodes also act as a worker nodes. For a small systems or non-critical services, this is relatively low-risk.
-However, because manager nodes use the Raft consensus algorithm to replicate data in a consistent way, they are sensitive to resource starvation. In sNow! environment you can *isolate managers in VMs without running other services* and deploy few bare metal nodes as Docker Swarm workers. In order to do so, you can drain manager nodes to make them unavailable as worker nodes:
+However, because manager nodes use the Raft consensus algorithm to replicate data in a consistent way, they are sensitive to resource starvation. In sNow! environment you can **isolate managers in VMs without running other services** and deploy few bare metal nodes as Docker Swarm workers. In order to do so, you can drain manager nodes to make them unavailable as worker nodes:
 ```
 docker node update --availability drain <NODEID>
 ```
