@@ -192,7 +192,7 @@ The following example will remove the service.
 ```
 docker service rm sleep_app
 ```
-## Service Orchestration
+## Software Stack Orchestration
 The following example represents much better the benefits of adopting this technology.
 
 ### Defining a stack of services
