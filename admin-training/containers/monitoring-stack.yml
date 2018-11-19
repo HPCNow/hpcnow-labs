@@ -22,6 +22,9 @@ services:
       - influxbd:/var/lib/influxdb
     deploy:
       replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
       placement:
         constraints:
           - node.role == manager
@@ -36,6 +39,9 @@ services:
       - influxbd
     deploy:
       replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
       placement:
         constraints:
           - node.role == manager
@@ -53,6 +59,9 @@ services:
       - influx
     deploy:
       mode: global
+      update_config:
+        parallelism: 1
+        delay: 10s
 
 
   elasticsearch:
@@ -67,6 +76,11 @@ services:
       memlock:
         soft: -1
         hard: -1
+    deploy:
+      mode: global
+      update_config:
+        parallelism: 1
+        delay: 10s
     volumes:
       - esdata1:/elasticsearch/data
     ports:
@@ -86,6 +100,11 @@ services:
       memlock:
         soft: -1
         hard: -1
+    deploy:
+      mode: global
+      update_config:
+        parallelism: 1
+        delay: 10s
     volumes:
       - esdata2:/elasticsearch/data
     networks:
@@ -103,6 +122,11 @@ services:
       memlock:
         soft: -1
         hard: -1
+    deploy:
+      mode: global
+      update_config:
+        parallelism: 1
+        delay: 10s
     volumes:
       - esdata3:/elasticsearch/data
     networks:
@@ -113,6 +137,11 @@ services:
     environment:
       SERVER_NAME: kibana.local
       ELASTICSEARCH_URL: http://elasticsearch:9200
+    deploy:
+      mode: global
+      update_config:
+        parallelism: 1
+        delay: 10s
     ports:
       - '5601:5601'
     networks:
