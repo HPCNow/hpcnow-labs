@@ -78,7 +78,7 @@ Modified by: Jordi Blasco <jordi.blasco@hpcnow.com>
 You can define your own preferences in ```$HOME/.slurm.env```. In order to do so, copy the default values into your home directory:
 
 ```
-cp -p /sNow/snow-tools/etc/slurm.env $HOME/.slurm.env
+cp -p /etc/slurm/slurm.env $HOME/.slurm.env
 ```
 And update the values as you wish. Example
 
