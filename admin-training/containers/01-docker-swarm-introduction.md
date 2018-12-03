@@ -36,10 +36,38 @@ However, because manager nodes use the Raft consensus algorithm to replicate dat
 ```
 docker node update --availability drain <NODEID>
 ```
-<!--
+## Deploy Docker Swarm without sNow! (CentOS/RHEL)
+Install required packages:
+```
+sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+```
+Enable the repository
+```
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+```
+Install and enable Docker:
+```
+sudo yum install docker-ce
+sudo systemctl enable docker
+sudo systemctl start docker
+```
+Update user ACLs for docker
+```
+sudo usermod -aG docker <your-user>
+```
+Setup Docker Swarm cluster in the first node (manager):
+```
+docker swarm init --advertise-addr <node_ip_address>
+```
+Join the other nodes (workers) with the following command:
+```
+docker swarm join --token <your_swarm_token> <manager_node_ip_address>:2377
+```
+## Deploy Docker Swarm with sNow!
+sNow! simplifies the deployment process of Docker Swarm
+
 ### Option 1: Deploy Docker Swarm in VMs
 Assuming that you have already defined three VMs (domains) dedicated for Docker Swarm cluster:
-
 ```
 snow add domain swarm01 --role swarm-manager
 snow add domain swarm02 --role swarm-worker
@@ -50,7 +78,6 @@ snow deploy swarm03
 ```
 ### Option 2: Deploy Docker Swarm in three compute nodes (production solution)
 Assuming that you have already defined three nodes dedicated for Docker Swarm cluster:
-
 ```
 snow add node swarm01 --role swarm-manager
 snow add node swarm02 --role swarm-worker
@@ -59,7 +86,6 @@ snow deploy swarm01
 snow deploy swarm02
 snow deploy swarm03
 ```
--->
 ## Swarm Interaction
 
 ### 1. Check the status of the Docker Swarm cluster
@@ -70,7 +96,6 @@ hxakgodvxtz9ynsc0nniyz7ol *   swarm01             Ready               Active    
 t3z5ru9ssu20b7a9i9bj4p5sl     swarm02             Ready               Active                                  18.03.1-ce
 o4vbamp797i2yrvo7anqlgd8y     swarm03             Ready               Active                                  18.03.1-ce
 ```
-
 ### 2. Deploy the first application component as Docker service
 The following example will create a very simple container running one hour sleep as a service.
 ```
