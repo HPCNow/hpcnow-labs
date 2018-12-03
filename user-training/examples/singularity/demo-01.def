@@ -1,11 +1,11 @@
-Bootstrap: docker
+Bootstrap: localimage
 
-From: ubuntu 
+From: ./demo-template.sif
 
 
 %help
 
-Supermagic is a MPI sanity check - https://github.com/hpc/supermagic
+    Supermagic is a MPI sanity check - https://github.com/hpc/supermagic
 
 #%setup
 
@@ -20,57 +20,24 @@ Supermagic is a MPI sanity check - https://github.com/hpc/supermagic
     Version v1.0
 
 
-#%environment
+%environment
+
+    LD_LIBRARY_PATH=/usr/lib/libibverbs:$LD_LIBRARY_PATH
 
 
 %post
 
-    echo "Creating required mount points"
-    mkdir /scratch
-    mkdir /checkpoint
+    echo "Installing Supermagic"
+    git clone https://github.com/hpc/supermagic.git
+    cd supermagic
+    make MPICC=cc
+    cp -p supermagic /usr/bin/
 
-    echo "Installing Development Tools group"
-    apt-get update && apt-get install -y --no-install-recommends \
-        apt-utils \
-        build-essential \
-        wget \
-        curl \
-        git \
-        libopenblas-dev \
-        libcurl4-openssl-dev \
-        libfreetype6-dev \
-        libpng-dev \
-        libzmq3-dev \
-        python-pip \
-        pkg-config \
-        python-dev \
-        python-setuptools \
-        rsync \
-        software-properties-common \
-        unzip \
-        vim \
-        zip \
-        zlib1g-dev
-    apt-get clean
+%runscript
 
-    echo "Installing OpenMPI into container..."
-    #git clone https://github.com/open-mpi/ompi.git
-    wget https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.0.tar.gz
-    tar -zxf openmpi-4.0.0.tar.gz
-    cd openmpi-4.0.0
-    #./autogen.pl
-    ./configure --prefix=/usr/local
-    make
-    make install
-#    /usr/local/bin/mpicc examples/ring_c.c -o /usr/bin/mpi_ring
+    /usr/bin/supermagic
 
+%test
 
-#%runscript
-
-#    echo "Rooooar!"
-#    echo "Arguments received: $*"
-#    exec echo "$@"
-
-#%test
-
-#    /usr/local/bin/mpirun --allow-run-as-root /usr/bin/mpi_test
+    #/usr/local/bin/mpirun --allow-run-as-root /usr/bin/supermagic
+    /usr/local/bin/mpirun /usr/bin/supermagic

@@ -1,11 +1,11 @@
 Bootstrap: docker
 
-From: ubuntu 
+From: ubuntu
 
 
 %help
 
-Development Enviroment with OpenMPI support
+Development Environment with OpenMPI support
 
 #%setup
 
@@ -23,12 +23,15 @@ Development Enviroment with OpenMPI support
 
     echo "Creating required mount points"
     mkdir /scratch
-    mkdir /checkpoint
+    mkdir /chk
 
-    echo "Installing Development Tools group"
+    echo "Installing Development Environment"
     apt-get update && apt-get install -y --no-install-recommends \
         apt-utils \
         build-essential \
+        libtool \
+        autoconf \
+        automake \
         wget \
         curl \
         git \
@@ -47,24 +50,28 @@ Development Enviroment with OpenMPI support
         vim \
         zip \
         zlib1g-dev
-    apt-get clean
 
     # IB MLNX OFED
+    echo "Installing Infiniband Libraries and Utils"
     apt-get install -y dkms infiniband-diags libibverbs* ibacm librdmacm* libmlx4* libmlx5* mstflint libibmad.* libibumad* opensm srptools librdmacm-dev rdmacm-utils ibverbs-utils perftest vlan ibutils
-    apt-get install -y libtool autoconf automake build-essential ibutils ibverbs-utils rdmacm-utils infiniband-diags perftest librdmacm-dev libibverbs-dev libmlx4-1 numactl libnuma-dev autoconf automake gcc g++ git libtool pkg-config
+    apt-get install -y ibutils ibverbs-utils rdmacm-utils infiniband-diags perftest librdmacm-dev libibverbs-dev libmlx4-1 numactl libnuma-dev
     apt-get install -y libnl-3-200 libnl-route-3-200 libnl-route-3-dev libnl-utils
 
-    echo "Installing OpenMPI into container..."
+    # Installing OpenMPI
+    echo "Installing OpenMPI"
     wget https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.0.tar.gz
     tar -zxf openmpi-4.0.0.tar.gz
     cd openmpi-4.0.0
     ./configure --prefix=/usr/local
     make
     make install
-#    /usr/local/bin/mpicc examples/ring_c.c -o /usr/bin/mpi_ring
+    /usr/local/bin/mpicc examples/ring_c.c -o /usr/bin/mpi_ring
 
+    # Cleaning
+    apt-get clean
+    rm -fr /openmpi-4.0.0.tar.gz openmpi-4.0.0
 
-%environment    
+%environment
     LD_LIBRARY_PATH=/usr/lib/libibverbs:$LD_LIBRARY_PATH
 
 

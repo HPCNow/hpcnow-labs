@@ -1,6 +1,6 @@
 Bootstrap: localimage
 
-From: ./demo-template.simg
+From: ./demo-template.sif
 
 
 %help
@@ -82,5 +82,3 @@ This is a help message for the container
 %test
 
     /usr/local/bin/mpirun --allow-run-as-root /usr/bin/mpi_test
-
-
