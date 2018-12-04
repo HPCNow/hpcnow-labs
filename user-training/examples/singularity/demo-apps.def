@@ -1,0 +1,68 @@
+Bootstrap: docker
+
+From: mattaudesse/cowsay:1.0
+
+%labels
+
+    Maintainer Jordi Blasco (hpcnow.com)
+
+    Version v1.0
+
+%apprun namd
+
+    exec perl /cowsay/cowsay -f tux "$MSG"
+
+%appenv namd
+
+    MSG="NAMD will not run for real :-)"
+
+    export MSG
+
+%apphelp namd
+
+    NAMD, recipient of a 2002 Gordon Bell Award and a 2012 Sidney Fernbach Award, is a parallel molecular dynamics code designed for high-performance simulation of large biomolecular systems. Based on Charm++ parallel objects, NAMD scales to hundreds of cores for typical simulations and beyond 500,000 cores for the largest simulations. NAMD uses the popular molecular graphics program VMD for simulation setup and trajectory analysis, but is also file-compatible with AMBER, CHARMM, and X-PLOR. NAMD is distributed free of charge with source code. You can build NAMD yourself or download binaries for a wide variety of platforms. Our tutorials show you how to use NAMD and VMD for biomolecular modeling.
+
+
+%apprun nwchem
+
+    exec perl /cowsay/cowsay -f daemon "$MSG"
+
+%appenv nwchem
+
+    MSG="NWCHEM will not run for real :-)"
+
+    export MSG
+
+%apphelp nwchem
+    
+    NWChem is an ab initio computational chemistry software package which also includes quantum chemical and molecular dynamics functionality. It was designed to run on high-performance parallel supercomputers as well as conventional workstation clusters.
+
+
+%apprun gromacs
+
+    exec perl /cowsay/cowsay -f dragon "$MSG"
+
+%appenv gromacs
+
+    MSG="GROMACS will not run for real :-)"
+
+    export MSG
+
+%apphelp gromacs
+
+    GROningen MAchine for Chemical Simulations is a molecular dynamics package mainly designed for simulations of proteins, lipids, and nucleic acids.
+
+
+%apprun amber
+
+    exec perl /cowsay/cowsay -f turtle "$MSG"
+
+%appenv amber
+
+    MSG="Amber will not run for real :-)"
+
+    export MSG
+
+%apphelp amber
+
+    Assisted Model Building with Energy Refinement is a family of force fields for molecular dynamics of biomolecules originally developed by Peter Kollman's group at the University of California, San Francisco. AMBER is also the name for the molecular dynamics software package that simulates these force fields.

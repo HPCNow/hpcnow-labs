@@ -1,0 +1,38 @@
+Bootstrap: localimage
+
+From: ./demo-template.sif
+
+### command: mpirun -np 2 singularity exec demo-supermagic.sif supermagic -a -n 100
+
+%help
+
+    Supermagic is a MPI sanity check - https://github.com/hpc/supermagic
+
+%labels
+
+    Maintainer Jordi Blasco (hpcnow.com)
+
+    Version v1.0
+
+
+%environment
+
+    LD_LIBRARY_PATH=/usr/lib/libibverbs:/usr/local/lib:/usr/local/lib/openmpi:$LD_LIBRARY_PATH
+
+%post
+
+    echo "Installing Supermagic"
+    git clone https://github.com/hpc/supermagic.git
+    cd supermagic
+    export LC_ALL=C
+    autoreconf -i
+    ./configure --prefix=/usr/local CC=mpicc
+    make -j 4
+    make install
+    cd /
+    rm -fr supermagic
+
+%runscript
+
+    /usr/local/bin/supermagic
+

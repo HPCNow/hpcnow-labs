@@ -2,15 +2,12 @@ Bootstrap: docker
 
 From: ubuntu
 
+### command: singularity exec demo-template.sif mpicc openmpi-4.0.0/examples/ring_c.c -o ./mpi_ring
+### command: mpirun -np 2 singularity exec demo-template.sif ./mpi_ring
 
 %help
 
 Development Environment with OpenMPI support
-
-#%setup
-
-
-#%files
 
 
 %labels
@@ -25,7 +22,7 @@ Development Environment with OpenMPI support
     mkdir /scratch
     mkdir /chk
 
-    echo "Installing Development Environment"
+    echo "Installing Development Environment and Dependencies"
     apt-get update && apt-get install -y --no-install-recommends \
         apt-utils \
         build-essential \
@@ -49,6 +46,7 @@ Development Environment with OpenMPI support
         unzip \
         vim \
         zip \
+        openssh-client \
         zlib1g-dev
 
     # IB MLNX OFED
@@ -63,21 +61,14 @@ Development Environment with OpenMPI support
     tar -zxf openmpi-4.0.0.tar.gz
     cd openmpi-4.0.0
     ./configure --prefix=/usr/local
-    make
+    make -j 4
     make install
-    /usr/local/bin/mpicc examples/ring_c.c -o /usr/bin/mpi_ring
 
     # Cleaning
     apt-get clean
     rm -fr /openmpi-4.0.0.tar.gz openmpi-4.0.0
 
 %environment
-    LD_LIBRARY_PATH=/usr/lib/libibverbs:$LD_LIBRARY_PATH
 
+    LD_LIBRARY_PATH=/usr/lib/libibverbs:/usr/local/lib:/usr/local/lib/openmpi:$LD_LIBRARY_PATH
 
-#%runscript
-
-
-#%test
-
-#    /usr/local/bin/mpirun --allow-run-as-root /usr/bin/mpi_test
