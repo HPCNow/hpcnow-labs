@@ -8,7 +8,7 @@ A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 
 HPCNow!, hereby disclaims all copyright interest in this document
-`snow-labs' written by Jordi Blasco.
+`hpcnow-labs' written by Jordi Blasco.
 -->
 # Hands-On 10: MPI Runtime Tuning
 
@@ -24,7 +24,7 @@ In this hands-on, we are going to potential performance improvements by tuning t
 
 ### Interconnect fabrics tuning
 
-For resilience reasons, Intel MPI library falls back from "dapl" or "shm:dapl" fabric to lower performance fabric if DAPL provider initialization failed.
+For resilience reasons, Intel MPI library falls back from "dapl" or "shm:dapl" fabric to lower performance fabric if DAPL provider initialisation failed.
 ```
 export I_MPI_FALLBACK=disable
 export I_MPI_FABRICS=shm:dapl
@@ -40,7 +40,7 @@ Data locality improves performance. If the code uses shared memory (i.e. OpenMP)
 
 The shared data should be local to the socket and moreover, the data will potentially stay on the processor's cache.
 
-System processes can interrupt your process running on a core. If your process is not bound to a core or to a socket, it can be moved. In this case, all data for this process has to be moved as wll, and this involves a huge overhead..
+System processes can interrupt your process running on a core. If your process is not bound to a core or to a socket, it can be moved. In this case, all data for this process has to be moved as well, and this involves a huge overhead..
 
 MPI communication is faster between processes which are on the same socket. If you know that two tasks perform many communications, you can bind them to the same socket.
 
@@ -122,7 +122,7 @@ export I_MPI_SHM_CACHE_BYPASS_THRESHOLDS = VALUE
 ### Collective algorithms
 The environment variable ```I_MPI_ADJUST_<opname>``` allows to change the algorithm for the specific collective operation.
 
-Based on the trace analysis, explore what benefits could provide those algorithms in the most rellevant collective operation.
+Based on the trace analysis, explore what benefits could provide those algorithms in the most relevant collective operation.
 More information in the Intel MPI manual.
 Example for ALLREDUCE: ```I_MPI_ADJUST_ALLREDUCE``` value controls MPI_Allreduce algorithm for Intel MPI 5.
 * Recursive doubling algorithm

@@ -7,7 +7,7 @@
 # Free Documentation License".
 #
 # HPCNow!, hereby disclaims all copyright interest in this document
-# `snow-labs' written by Jordi Blasco.
+# `hpcnow-labs' written by Jordi Blasco.
 version: '3'
 # ElasticSearch considerations
 # the following command is required in the host nodes in order to ES to work

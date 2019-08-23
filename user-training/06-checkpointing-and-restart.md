@@ -8,7 +8,7 @@ A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 
 HPCNow!, hereby disclaims all copyright interest in this document
-`snow-labs' written by Jordi Blasco.
+`hpcnow-labs' written by Jordi Blasco.
 -->
 # Hands-On 06: Checkpointing and Restart
 
@@ -37,8 +37,8 @@ The native C&R will depend on the used application or code.
 #SBATCH --time-min=HH:MM:SS
 ```
 
-- Signaled Checkpointing (preferred method)
-  If your code can generate the checkpoint after receiving a signal, it will suit much better than the previous option. When a job is within sig_time seconds of its end time, send it the signal sig_num. Due to the resolution of event handling by SLURM, the signal may be sent up to 60 seconds earlier than specified. sig_num may either be a signal number or name (e.g. "10" or "USR1"). sig_time must have integer value between zero and 65535. By default, no signal is sent before the job's end time. If a sig_num is specified without any sig_time, the default time will be 60 seconds. Use the "B:" option to signal only the batch shell, none of the other processes will be signaled. By default all job steps will be signalled, but not the batch shell itself.
+- Signalled Checkpointing (preferred method)
+  If your code can generate the checkpoint after receiving a signal, it will suit much better than the previous option. When a job is within sig_time seconds of its end time, send it the signal sig_num. Due to the resolution of event handling by SLURM, the signal may be sent up to 60 seconds earlier than specified. sig_num may either be a signal number or name (e.g. "10" or "USR1"). sig_time must have integer value between zero and 65535. By default, no signal is sent before the job's end time. If a sig_num is specified without any sig_time, the default time will be 60 seconds. Use the "B:" option to signal only the batch shell, none of the other processes will be signalled. By default all job steps will be signalled, but not the batch shell itself.
 
 ```
 #SBATCH --signal=[B:]<sig_num>[@<sig_time>]

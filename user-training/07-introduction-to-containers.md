@@ -8,7 +8,7 @@ A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 
 HPCNow!, hereby disclaims all copyright interest in this document
-`snow-labs' written by Jordi Blasco.
+`hpcnow-labs' written by Jordi Blasco.
 -->
 # Hands-On 07: Running HPC jobs in containers
 
@@ -38,7 +38,7 @@ interactive
 
 ## Create a singularity container
 
-You can make and customize containers locally, and then run them on your shared resource. You can even import Docker image content without sudo permissions. Singularity also allows you to leverage the resources of whatever host you are on. This includes HPC interconnects, resource managers, file systems, GPUs and/or accelerators, etc.
+You can make and customise containers locally, and then run them on your shared resource. You can even import Docker image content without sudo permissions. Singularity also allows you to leverage the resources of whatever host you are on. This includes HPC interconnects, resource managers, file systems, GPUs and/or accelerators, etc.
 
 The following diagram defines the workflow to create, populate and finally run the singularity container.
 

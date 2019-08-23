@@ -8,13 +8,11 @@ A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 
 HPCNow!, hereby disclaims all copyright interest in this document
-`snow-labs' written by Jordi Blasco.
+`hpcnow-labs' written by Jordi Blasco.
 -->
-# sNow! Labs
+# HPCNow! Labs
 
-This repository contains the required material to deliver training to [sNow!](https://hpcnow.github.io/snow-documentation/) users and administrators. The content of this repository is distributed under the [GPLv3 license](LICENSE). As part of the sNow! project and as part of a community effort, we would like to encourage you to contribute with feedback, improving the quality and/or including new training material to speed up the learning curve for end users.
+This repository contains the material and hands-on sessions used by [HPCNow!](https://hpcnow.com) to deliver training to HPC users and administrators. The content of this repository is distributed under the [GPLv3 license](LICENSE). We would like to encourage you to contribute with feedback, improving the quality and/or including new training material to speed up the learning curve for end users.
+The content of the training is complemented with a set of slides and demonstrations that are not available under [GPLv3 license](LICENSE). HPCNow! also provides a training environment with the required compute capacity for the attendees.
 
-* [Official documentation of sNow!](https://hpcnow.github.io/snow-documentation/)
-* [Source code project](https://bitbucket.org/hpcnow/snow-tools)
-* [HPCNow! website](http://hpcnow.com)
-* [sNow! website](https://hpcnow.github.io/snow-web/) (under-construction)
+For more information, visit the [HPCNow! website](http://hpcnow.com)

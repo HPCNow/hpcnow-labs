@@ -8,7 +8,7 @@ A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 
 HPCNow!, hereby disclaims all copyright interest in this document
-`snow-labs' written by Jordi Blasco.
+`hpcnow-labs' written by Jordi Blasco.
 -->
 # Hands-On 11: Single Task Tuning
 
@@ -34,7 +34,7 @@ ml intel/2017a
 Compile the first serial example ([```serial_mm.c```](examples/single_task_tuning/serial_mm.c)) and run the program:
 
 ```
-cd $HOME/snow-labs/user-training/examples/single_task_tuning
+cd $HOME/hpcnow-labs/user-training/examples/single_task_tuning
 icc serial_mm.c -o serial_mm_default
 ./serial_mm_default
 ```
@@ -45,7 +45,7 @@ In order to remove noise related with the IO, comment the loop responsible for w
 Compile it and run it again in order to evaluate a real improvement in the computational component of the code.
 
 ```
-cd $HOME/snow-labs/user-training/examples/single_task_tuning
+cd $HOME/hpcnow-labs/user-training/examples/single_task_tuning
 icc serial_mm.c -o serial_mm_default
 ./serial_mm_default
 ```
@@ -97,14 +97,14 @@ icc -qopenmp -O3 -xHost -qopt-report-phase:openmp -qopt-report=5 openmp_mm.c -o 
 
 The report will tell only what we instructed to parallelize.
 
-Using the [```scalability_test.sh```](examples/single_task_tuning/scalability_test.sh) available in ```$HOME/snow-labs/user-training/examples/single_task_tuning``` and the following command lines, you should be able to find the most optimal number of OpenMP threads to run with.
+Using the [```scalability_test.sh```](examples/single_task_tuning/scalability_test.sh) available in ```$HOME/hpcnow-labs/user-training/examples/single_task_tuning``` and the following command lines, you should be able to find the most optimal number of OpenMP threads to run with.
 
 ```
-cd $HOME/snow-labs/user-training/examples/single_task_tuning
+cd $HOME/hpcnow-labs/user-training/examples/single_task_tuning
 for i in 1 2 4 6 8 12; do sbatch --cpus-per-task=$i scalability_test.sh ; done
 ```
 
-You can review the benchmark results here: $HOME/snow-labs/user-training/OUT/benchmark-results.txt
+You can review the benchmark results here: $HOME/hpcnow-labs/user-training/OUT/benchmark-results.txt
 
 Finally, combine both levels of parallelism a the same time and submit again the jobs to find the most optimal number of threads:
 

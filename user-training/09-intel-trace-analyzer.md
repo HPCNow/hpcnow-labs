@@ -8,11 +8,11 @@ A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 
 HPCNow!, hereby disclaims all copyright interest in this document
-`snow-labs' written by Jordi Blasco.
+`hpcnow-labs' written by Jordi Blasco.
 -->
 # Hands-On 09: Intel Trace Analyzer
 
-In this hands-on, we are going to analise the traces collected in the previous hands-on session with Intel Trace Analyzer.
+In this hands-on, we are going to analyse the traces collected in the previous hands-on session with Intel Trace Analyzer.
 
 *Estimated time : 30 minutes*
 
@@ -39,7 +39,7 @@ source itacvars.sh impi5
 Move to folder where the traces had been collected and open the trace file with:
 
 ```
-cd $HOME/snow-labs/user-training/OUT/XXXXXX
+cd $HOME/hpcnow-labs/user-training/OUT/XXXXXX
 traceanalyzer ./heart_demo.single.stf &
 ```
 
@@ -48,7 +48,7 @@ Where ```XXXXXXX``` is the JobID of the job which collected the traces
 Explore the result data analysing:
 * Event Timeline
 * Ungroup MPI Functions
-* Detect Serialization in Function Profile and Message Profile
-* Compare Original Trace File With Idealized Trace File
+* Detect Serialisation in Function Profile and Message Profile
+* Compare Original Trace File With Idealised Trace File
 * Message Profile chart
 * Explore Potential issues and suggested sections of the code affected

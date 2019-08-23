@@ -8,11 +8,11 @@ A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 
 HPCNow!, hereby disclaims all copyright interest in this document
-`snow-labs' written by Jordi Blasco.
+`hpcnow-labs' written by Jordi Blasco.
 -->
 # HPC User Training
-This folder contains the required material to deliver trainings to sNow! users. The content of this repo is distributed under GPLv3 license.
-As part of sNow! project, and as part of community effort, we would like to encourage you to contribute with feedback, improving the quality and including new training material to speed up the learning curve of the end users.
+This folder contains the required material to deliver trainings to HPC users. The content of this repository is distributed under GPLv3 license.
+We would like to encourage you to contribute with feedback, improving the quality and including new training material to speed up the learning curve of the end users.
 
 ## Sections
 

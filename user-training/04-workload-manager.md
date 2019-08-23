@@ -8,11 +8,11 @@ A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 
 HPCNow!, hereby disclaims all copyright interest in this document
-`snow-labs' written by Jordi Blasco.
+`hpcnow-labs' written by Jordi Blasco.
 -->
 # Hands-On 04: Workload Manager
 
-In this hands-on, we are going to interact with the workload manager by submiting different type of jobs, listing and cancelling them.
+In this hands-on, we are going to interact with the workload manager by submitting different type of jobs, listing and cancelling them.
 
 *Estimated time : 30 minutes*
 
@@ -262,7 +262,7 @@ There is a quite extensive list of real applications submit scripts available in
 Please, feel free to clone and pull new request to include more examples.
 
 ### Submitting and managing jobs
-In this section we are going to submit few jobs using an example code. We found [heart_demo](https://github.com/CardiacDemo/Cardiac_demo.git) really usefull code for teaching the very basics of HPC and also for teaching performance analysis (hands-on 08 to 10).
+In this section we are going to submit few jobs using an example code. We found [heart_demo](https://github.com/CardiacDemo/Cardiac_demo.git) really useful code for teaching the very basics of HPC and also for teaching performance analysis (hands-on 08 to 10).
 
 The "heart_demo" project is developed by Alexey Malkhanov (Intel) and it implements minimal functionality for a real-time 3D cardiac electrophysiology simulation. More information about this project available [here](https://github.com/CardiacDemo/Cardiac_demo.git).
 
@@ -275,7 +275,7 @@ ml intel/2017a
 Move to the folder ```examples/Cardiac_demo``` and build the example code with:
 
 ```
-cd $HOME/snow-labs/user-training/examples/Cardiac_demo
+cd $HOME/hpcnow-labs/user-training/examples/Cardiac_demo
 mkdir build
 cd build
 mpiicpc ../heart_demo.cpp ../luo_rudy_1991.cpp ../rcm.cpp ../mesh.cpp -g \
@@ -285,7 +285,7 @@ mpiicpc ../heart_demo.cpp ../luo_rudy_1991.cpp ../rcm.cpp ../mesh.cpp -g \
 Using the ```cardiac_demo.sh``` submit script and the following command lines, you should be able to submit a serial job, OpenMP job, MPI job and finally a hybrid job (MPI + OpenMP):
 
 ```
-cd $HOME/snow-labs/user-training/examples/
+cd $HOME/hpcnow-labs/user-training/examples/
 sbatch --ntasks=1  --cpus-per-task=1  cardiac_demo.sh
 sbatch --ntasks=1  --cpus-per-task=16 cardiac_demo.sh
 sbatch --ntasks=16 --cpus-per-task=1  cardiac_demo.sh

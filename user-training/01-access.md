@@ -8,7 +8,7 @@ A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 
 HPCNow!, hereby disclaims all copyright interest in this document
-`snow-labs' written by Jordi Blasco.
+`hpcnow-labs' written by Jordi Blasco.
 -->
 # Hands-On 01: Getting access to the cluster
 
@@ -67,5 +67,5 @@ source ~/.bashrc
 ### Download the training material into your home directory:
 
 ```
-git clone --recursive https://github.com/HPCNow/snow-labs
+git clone --recursive https://github.com/HPCNow/hpcnow-labs
 ```

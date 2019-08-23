@@ -8,7 +8,7 @@ A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 
 HPCNow!, hereby disclaims all copyright interest in this document
-`snow-labs' written by Jordi Blasco.
+`hpcnow-labs' written by Jordi Blasco.
 -->
 # Hands-On 02: Data management
 
@@ -55,14 +55,14 @@ scp -rp -P 22022 -i ~/.ssh/id_rsa_XXXX <origin_path> username@login.mydomain.com
 ```
 
 * Where ```<origin_path>``` and ```<destination_path>``` are the origin path and the expected destination path to your files.
-* The ```-P 22022``` indicates the default SSH port in sNow! login nodes.
+* The ```-P 22022``` indicates the default SSH port in login nodes.
 * The ```-r``` flag indicates to transfer the data contained in a folder recursively
 * The ```-p``` flag instructs scp to preserve the time and ownership of each file
 
 
 ### Using rsync
 
-*rsync* is a utility for efficiently transferring and synchronizing files across computer systems, by checking the timestamp and size of files. This option usually takes more time to initiate the file transferring but it allows you to detect variations in large datasets. This is very convinient when you want to syncronise large datasets where only few files are modified/created. Using GUI, ```scp``` or ```sftp``` you will transfer the whole lot, but with ```rsync``` you will be able to avoid to transfer files that have not been modified.
+*rsync* is a utility for efficiently transferring and synchronising files across computer systems, by checking the timestamp and size of files. This option usually takes more time to initiate the file transferring but it allows you to detect variations in large datasets. This is very convenient when you want to synchronise large datasets where only few files are modified/created. Using GUI, ```scp``` or ```sftp``` you will transfer the whole lot, but with ```rsync``` you will be able to avoid to transfer files that have not been modified.
 
 ```
 rsync -e 'ssh -p 22022' -av <origin_path> username@login.mydomain.com:<destination_path>
@@ -74,9 +74,9 @@ Options:
 * ```-v``` "Verbose".
 * ```-n```  "dry run" - don't actually do anything, just indicate what would be done.
 
-### Transfering large amount of data
+### Transferring large amount of data
 
-If you need to transfer really large amoung of data, you should consider to use [High Performance SSH/SCP - HPN-SSH](https://www.psc.edu/hpn-ssh) which is able to provide much better performance than regular SSH. In order to take advantage of HPN-SSH, you need HPN-SSH in the server and also in the client. If don't want to patch your ssh client, you can use this [docker container](https://hub.docker.com/r/yantis/ssh-hpn-x/):
+If you need to transfer really large amount of data, you should consider to use [High Performance SSH/SCP - HPN-SSH](https://www.psc.edu/hpn-ssh) which is able to provide much better performance than regular SSH. In order to take advantage of HPN-SSH, you need HPN-SSH in the server and also in the client. If don't want to patch your ssh client, you can use this [docker container](https://hub.docker.com/r/yantis/ssh-hpn-x/):
 
 ### File System Quotas
 Quite often the cluster administrators setup quotas to define upper limits in disk space and number of files in critical portions of shared file systems.

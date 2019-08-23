@@ -8,7 +8,7 @@ A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 
 HPCNow!, hereby disclaims all copyright interest in this document
-`snow-labs' written by Jordi Blasco.
+`hpcnow-labs' written by Jordi Blasco.
 -->
 # Hands-On 03: Working environment
 
@@ -34,7 +34,7 @@ In order to test the code and interact with the command line, you can use the ``
  - running batch jobs
  - performing IO intensive operations
  - pre and post processing simulations and/or analysis
- - visualize data
+ - visualise data
  - performing memory intensive operations
 
 **The login nodes are used for:**

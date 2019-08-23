@@ -8,7 +8,7 @@ A copy of the license is included in the section entitled "GNU
 Free Documentation License".
 
 HPCNow!, hereby disclaims all copyright interest in this document
-`snow-labs' written by Jordi Blasco.
+`hpcnow-labs' written by Jordi Blasco.
 -->
 # Hands-On 08: Intel Trace Collector
 
@@ -35,7 +35,7 @@ In the hands-on-08 folder you will find two submit script examples to collect MP
 
 Choose one of them, explore and modify the content of the script and submit the job. Please, note that you will take more benefits of this training if you use your own code. The test should be no longer than 15 minutes.
 
-If you don’t have a code ready, you can use the example located in: ```$HOME/snow-labs/user-training/examples/Cardiac_demo``` which is a hybrid MPI/OpenMP application.
+If you don’t have a code ready, you can use the example located in: ```$HOME/hpcnow-labs/user-training/examples/Cardiac_demo``` which is a hybrid MPI/OpenMP application.
 
 In order to build and instrument the code you will need to load the following environment:
 
@@ -50,7 +50,7 @@ Move to the folder Cardiac_demo and build the example code with and without inst
 
 ### Non-instrumented
 ```
-cd $HOME/snow-labs/user-training/examples/Cardiac_demo
+cd $HOME/hpcnow-labs/user-training/examples/Cardiac_demo
 mkdir build_non-instrumented
 cd build_non-instrumented
 mpiicpc ../heart_demo.cpp ../luo_rudy_1991.cpp ../rcm.cpp ../mesh.cpp -g \
@@ -59,7 +59,7 @@ mpiicpc ../heart_demo.cpp ../luo_rudy_1991.cpp ../rcm.cpp ../mesh.cpp -g \
 
 ### Instrumented
 ```
-cd $HOME/snow-labs/user-training/examples/Cardiac_demo
+cd $HOME/hpcnow-labs/user-training/examples/Cardiac_demo
 mkdir build_instrumented
 cd build_instrumented
 mpiicpc ../heart_demo.cpp ../luo_rudy_1991.cpp ../rcm.cpp ../mesh.cpp -tcollect -g \
@@ -70,19 +70,19 @@ mpiicpc ../heart_demo.cpp ../luo_rudy_1991.cpp ../rcm.cpp ../mesh.cpp -tcollect 
 Using the [```scalability_test.sh```](examples/mpi_tuning/scalability_test.sh) and the following command lines, you should be able to find the most optimal combination of processes and threads to run with.
 
 ```
-cd $HOME/snow-labs/user-training/examples/mpi_tuning
+cd $HOME/hpcnow-labs/user-training/examples/mpi_tuning
 for i in 1 4 12; do sbatch --ntasks=$((48/$i)) --cpus-per-task=$i scalability_test.sh ; done
 ```
 
-You can review the benchmark results here: ```$HOME/snow-labs/user-training/OUT/benchmark-results.txt```
+You can review the benchmark results here: ```$HOME/hpcnow-labs/user-training/OUT/benchmark-results.txt```
 
 Once you get the best result, submit a job based on those scripts ```Intel-Trace-Analyser-and-Collector-instrumented-*.sh``` in order to collect the MPI traces.
 
 ```
-cd $HOME/snow-labs/user-training/examples/mpi_tuning
+cd $HOME/hpcnow-labs/user-training/examples/mpi_tuning
 sbatch --ntasks=XX --cpus-per-task=YY Intel-Trace-Analyser-and-Collector-2017.sh
 sbatch --ntasks=XX --cpus-per-task=YY Intel-Trace-Analyser-and-Collector-instrumented-2017.sh
 ```
 Where XX are the number of MPI tasks and YY are the number of OpenMP threads which delivered the best performance.
 
-Once the job are done, you will find the traces collected in: ```$HOME/snow-labs/user-training/OUT/```
+Once the job are done, you will find the traces collected in: ```$HOME/hpcnow-labs/user-training/OUT/```
