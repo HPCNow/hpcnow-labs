@@ -66,7 +66,7 @@ scontrol update jobid=5001 TimeLimit=+10:00:00 # This will increase the time lim
 ```
 scontrol update jobid=5001 priority=3000
 ```
-## Backup
+## Recover from a Backup
 * Generate a backup file with the QoS and accouting associations: sacctmgr dump mycluster File=/var/local/backup/slurm/acct_backup-XXXXX.cfg
 * Stop the slurmdbd daemons from slurmdb01: systemctl stop slurmdbd
 * Drop the database : mysql -u slurm --password=XXXXXXXXXX slurm_acct_db -e "DROP DATABASE slurm_acct_db;"
